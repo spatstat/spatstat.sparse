@@ -21,9 +21,13 @@ void Cwsum2outer(double *, double *, int *, int *, int *, double *, double *);
 void Cquadform(double *, int *, int *, double *, double *); 
 void Cbiform(double *, double *, int *, int *, double *, double *); 
 void Csumsymouter(double *, int *, int *, double *); 
-void Cwsumsymouter(double *, double *, int *, int *, double *);
+void Cwsumsymouter(double *, double *, int *, int *, double *); 
+void CsumDsymouter(double *, int *, int *, double *); 
+void CwsumDsymouter(double *, double *, int *, int *, double *);
 void CspaSumSymOut(int *, int *, int *, int *, int *, int *, double *, int *, double *); 
-void CspaWtSumSymOut(int *, int *, int *, int *, int *, int *, double *, int *, int *, int *, int *, double *, double *);
+void CspaWtSumSymOut(int *, int *, int *, int *, int *, int *, double *, int *, int *, int *, int *, double *, double *); 
+void CDspaSumSymOut(int *, int *, int *, int *, int *, int *, double *, int *, double *); 
+void CDspaWtSumSymOut(int *, int *, int *, int *, int *, int *, double *, int *, int *, int *, int *, double *, double *);
 /*
 
              Functions invoked by .Call
