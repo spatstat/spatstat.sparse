@@ -36,7 +36,7 @@
 
   The \pkg{spatstat.sparse} package defines the class
   \code{sparse3Darray} of sparse three-dimensional arrays.
-  These arrays can have numeric, integer, factor, logical, or complex
+  These arrays can have numeric, integer, logical, or complex
   entries. 
   
   The package supports:
@@ -54,18 +54,26 @@
   handle slices of three-dimensional arrays which are two-dimensional
   (sparse matrices) or one-dimensional (sparse vectors).
 
-  Most functions are currently in \code{spatstat.sparse-internal}.
-  Here is the full list:
-
+  Currently documented functions:
+  \tabular{ll}{
+    \code{\link{sparse3Darray}} \tab Create a sparse 3D array \cr
+    \code{\link{as.sparse3Darray}} \tab Convert other data to a sparse
+    3D array \cr
+    \code{\link{aperm.sparse3Darray}} \tab Permute a sparse array \cr
+    \code{\link{tensorSparse}} \tab Tensor product \cr
+    \code{\link{Ops.sparse3Darray}} \tab arithmetic and logical operators \cr
+    \code{\link{Complex.sparse3Darray}} \tab complex operators \cr
+    \code{\link{Math.sparse3Darray}}\tab standard mathematical functions \cr
+    \code{\link{Summary.sparse3Darray}} \tab mean, maximum etc \cr
+  }    
+    
+  Undocumented functions in \code{spatstat.sparse-internal}:
   \itemize{
-    \item \code{sparse3Darray}
-    \item \code{as.sparse3Darray}
     \item \code{dim.sparse3Darray}
     \item \code{"dim<-.sparse3Darray"}
     \item \code{dimnames.sparse3Darray}
     \item \code{"dimnames<-.sparse3Darray"}
     \item \code{print.sparse3Darray}
-    \item \code{aperm.sparse3Darray}
     \item \code{as.array.sparse3Darray}
     \item \code{"[.sparse3Darray"}
     \item \code{"[<-.sparse3Darray"}
@@ -75,10 +83,6 @@
     \item \code{RelevantEmpty}
     \item \code{isRelevantZero}
     \item \code{unionOfSparseIndices}
-    \item \code{Complex.sparse3Darray}
-    \item \code{Math.sparse3Darray}
-    \item \code{Ops.sparse3Darray}
-    \item \code{Summary.sparse3Darray}
     \item \code{inside3Darray}
     \item \code{SparseEntries}
     \item \code{SparseIndices}
@@ -86,7 +90,6 @@
     \item \code{mapSparseEntries}
     \item \code{applySparseEntries}
     \item \code{sumsymouterSparse}
-    \item \code{tensorSparse}
     \item \code{marginSumsSparse}
     \item \code{rbindCompatibleDataFrames}
     \item \code{bind.sparse3Darray}
@@ -106,9 +109,11 @@
   }
 }
 \section{Matrix Utilities}{
-Existing help files:
+  Existing help files:
   \code{\link{sumouter}}, \code{\link{quadform}},
   \code{\link{bilinearform}}.
+
+  \code{\link{matrixpower}}.
 
   Functions to document:
   \itemize{
