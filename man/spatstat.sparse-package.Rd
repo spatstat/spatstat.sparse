@@ -41,12 +41,13 @@
   
   The package supports:
   \itemize{
-    \item creation of sparse arrays, conversion to/from other data types
-    \item extracting of entries
-    \item assigning new values to entries
-    \item permuting and combining arrays
+    \item creation of sparse arrays from raw data
+    \item conversion to/from other data types
+    \item array indexing, extraction of entries, assignment of new values
     \item arithmetic and logical operations
     \item tensor operations (generalising matrix multiplication)
+    \item permutation of array dimensions
+    \item binding of several arrays into a single array
     \item printing of sparse arrays.
   }
 
@@ -54,73 +55,39 @@
   handle slices of three-dimensional arrays which are two-dimensional
   (sparse matrices) or one-dimensional (sparse vectors).
 
-  Currently documented functions:
+  The main functions are:
   \tabular{ll}{
     \code{\link{sparse3Darray}} \tab Create a sparse 3D array \cr
     \code{\link{as.sparse3Darray}} \tab Convert other data to a sparse
     3D array \cr
+    \code{\link{[.sparse3Darray}} \tab Subset operator \cr
     \code{\link{aperm.sparse3Darray}} \tab Permute a sparse array \cr
-    \code{\link{tensorSparse}} \tab Tensor product \cr
     \code{\link{Ops.sparse3Darray}} \tab arithmetic and logical operators \cr
     \code{\link{Complex.sparse3Darray}} \tab complex operators \cr
     \code{\link{Math.sparse3Darray}}\tab standard mathematical functions \cr
     \code{\link{Summary.sparse3Darray}} \tab mean, maximum etc \cr
+    \code{\link{tensorSparse}} \tab Tensor product \cr
+    \code{\link{as.array.sparse3Darray}} \tab Convert sparse array to full array \cr
   }    
-    
-  Undocumented functions in \code{spatstat.sparse-internal}:
-  \itemize{
-    \item \code{dim.sparse3Darray}
-    \item \code{"dim<-.sparse3Darray"}
-    \item \code{dimnames.sparse3Darray}
-    \item \code{"dimnames<-.sparse3Darray"}
-    \item \code{print.sparse3Darray}
-    \item \code{as.array.sparse3Darray}
-    \item \code{"[.sparse3Darray"}
-    \item \code{"[<-.sparse3Darray"}
-    \item \code{anyNA.sparse3Darray}
-    \item \code{RelevantZero}
-    \item \code{RelevantNA}
-    \item \code{RelevantEmpty}
-    \item \code{isRelevantZero}
-    \item \code{unionOfSparseIndices}
-    \item \code{inside3Darray}
-    \item \code{SparseEntries}
-    \item \code{SparseIndices}
-    \item \code{EntriesToSparse}
-    \item \code{mapSparseEntries}
-    \item \code{applySparseEntries}
-    \item \code{sumsymouterSparse}
-    \item \code{marginSumsSparse}
-    \item \code{rbindCompatibleDataFrames}
-    \item \code{bind.sparse3Darray}
-    \item \code{check.anySparseVector}
-    \item \code{evalSparse3Dentrywise}
-    \item \code{expandSparse}
-    \item \code{sparseVectorCumul}
-    \item \code{tensor1x1}
-  }
-  Indexing utilities:
-  \itemize{
-    \item \code{fullIndexSequence}
-    \item \code{grokIndexVector}
-    \item \code{replacementIndex}
-    \item \code{representativeRows}
-    \item \code{strictIndexSequence}
-  }
+
+  The class \code{"sparse3Darray"} has
+  methods for \code{anyNA}, \code{dim}, \code{dim<-},
+  \code{dimnames}, \code{dimnames<-} and \code{print},
+  documented in \code{\link{methods.sparse3Darray}}.
+
+  For other undocumented functions,
+  see \code{\link{spatstat.sparse-internal}}.
 }
 \section{Matrix Utilities}{
-  Existing help files:
-  \code{\link{sumouter}}, \code{\link{quadform}},
-  \code{\link{bilinearform}}.
-
-  \code{\link{matrixpower}}.
-
-  Functions to document:
-  \itemize{
-    \item \code{sumsymouter}
-    \item \code{checksolve}
-    \item \code{check.mat.mul}
+  The package also includes some utilities for matrix calculations:
+  \tabular{ll}{
+    \code{\link{sumouter}} \tab sum of outer products of rows of a matrix \cr
+    \code{\link{quadform}} \tab quadratic form involving rows of a matrix \cr
+    \code{\link{bilinearform}} \tab bilinear form involving rows of a matrix \cr
+    \code{\link{matrixsqrt}} \tab square root of a matrix \cr
+    \code{\link{matrixpower}} \tab powers of a matrix \cr
   }
+  % Functions to document: sumsymouter, checksolve, check.mat.mul
 }
 \section{Licence}{
   This library and its documentation are usable under the terms of the

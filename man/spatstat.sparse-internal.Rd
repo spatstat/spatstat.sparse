@@ -1,5 +1,6 @@
 \name{spatstat.sparse-internal} 
 \title{Internal Functions of spatstat.sparse Package}
+\alias{spatstat.sparse-internal} %DoNotExport
 %% indices
 \alias{fullIndexSequence}
 \alias{grokIndexVector}
@@ -11,15 +12,6 @@
 \alias{check.mat.mul}
 \alias{sumsymouter}
 %% sparse 3D arrays
-\alias{dim.sparse3Darray}
-\alias{dim<-.sparse3Darray}
-\alias{dimnames.sparse3Darray}
-\alias{dimnames<-.sparse3Darray}
-\alias{print.sparse3Darray}
-\alias{as.array.sparse3Darray}
-\alias{[.sparse3Darray}
-\alias{[<-.sparse3Darray}
-\alias{anyNA.sparse3Darray}
 \alias{RelevantZero}
 \alias{RelevantNA}
 \alias{RelevantEmpty}
@@ -55,15 +47,6 @@ checksolve(M, action, descrip, target)
 check.mat.mul(A, B, Acols, Brows, fatal)
 sumsymouter(x, w, distinct)
 %% sparse 3D arrays
-\method{dim}{sparse3Darray}(x)
-\method{dim}{sparse3Darray}(x) <- value
-\method{dimnames}{sparse3Darray}(x)
-\method{dimnames}{sparse3Darray}(x) <- value
-\method{print}{sparse3Darray}(x, \dots)
-\method{as.array}{sparse3Darray}(x, \dots)
-\method{[}{sparse3Darray}(x, i, j, k, drop, \dots)
-\method{[}{sparse3Darray}(x, i, j, k, \dots) <- value
-\method{anyNA}{sparse3Darray}(x, recursive)
 RelevantZero(x)
 RelevantNA(x)
 RelevantEmpty(x)

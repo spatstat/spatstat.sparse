@@ -84,19 +84,19 @@ S3method("Summary", "sparse3Darray")
 # ......................................... 
 # Automatically generated list of S3 methods
 # ......................................... 
-S3method("anyNA", "sparse3Darray")
+ S3method("anyNA", "sparse3Darray")
    S3method("aperm", "sparse3Darray")
 S3method("as.array", "sparse3Darray")
-S3method("dimnames", "sparse3Darray")
-S3method("dim", "sparse3Darray")
-S3method("print", "sparse3Darray")
-S3method("[", "sparse3Darray")
+ S3method("dimnames", "sparse3Darray")
+ S3method("dim", "sparse3Darray")
+ S3method("print", "sparse3Darray")
+  S3method("[", "sparse3Darray")
 # ......................................... 
 #      Assignment methods                   
 # ......................................... 
-S3method("dimnames<-", "sparse3Darray")
-S3method("dim<-", "sparse3Darray")
-S3method("[<-", "sparse3Darray")
+ S3method("dimnames<-", "sparse3Darray")
+ S3method("dim<-", "sparse3Darray")
+  S3method("[<-", "sparse3Darray")
 # ......................................... 
 #      End of methods                       
 # ......................................... 
