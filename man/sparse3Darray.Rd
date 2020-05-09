@@ -86,7 +86,7 @@ sparse3Darray(i = integer(0), j = integer(0), k = integer(0),
   ## creation by specifying nonzero elements
   M <- sparse3Darray(i=1:3, j=c(3,1,2), k=4:2,
                      x=runif(3), dims=rep(4, 3))
-  if(require(Matrix)) print(M)
+  M
   ## duplicate entries
   Mn <- sparse3Darray(i=c(1,1,2), j=c(2,2,1), k=c(3,3,2),
                      x=runif(3), dims=rep(3, 3))

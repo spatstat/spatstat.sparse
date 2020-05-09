@@ -24,7 +24,6 @@
 \alias{mapSparseEntries}
 \alias{applySparseEntries}
 \alias{sumsymouterSparse}
-\alias{marginSumsSparse}
 \alias{rbindCompatibleDataFrames}
 \alias{bind.sparse3Darray}
 \alias{check.anySparseVector}
@@ -59,7 +58,6 @@ EntriesToSparse(df, dims)
 mapSparseEntries(x, margin, values, conform, across)
 applySparseEntries(x, f, \dots)
 sumsymouterSparse(x, w, distinct, dbg)
-marginSumsSparse(X, MARGIN)
 rbindCompatibleDataFrames(x)
 bind.sparse3Darray(A, B, along)
 check.anySparseVector(v, npoints, fatal, things,

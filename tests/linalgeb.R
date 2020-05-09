@@ -8,7 +8,7 @@ ALWAYS <- FULLTEST <- TRUE
 ##
 ## checks validity of linear algebra code
 ##
-##  $Revision: 1.6 $ $Date: 2020/05/08 02:56:30 $
+##  $Revision: 1.8 $ $Date: 2020/05/09 13:13:26 $
 ##
 
 local({
@@ -37,8 +37,10 @@ local({
     stop("sumouter gives incorrect result in Weighted Asymmetric case")
 
   #' complex quadratic forms
+  dimnames(x) <- list(letters[1:nrow(x)], LETTERS[1:ncol(x)])
   a <- sumouter(x + 1i)
   b <- sumouter(x + 1i, w + 1i)
+  d <- sumouter(x + 1i, w + 1i, x - 1i)
   
   #' sumsymouter
   x <- array(as.numeric(1:(p * n * n)), dim=c(p, n, n))
@@ -56,10 +58,12 @@ local({
   b <- sumsymouter(x + 1i, w + 1i)
   
   #' power of complex matrix
-  M <- diag(c(1,-1))
+  M <- diag(c(4,-4))
+  dimnames(M) <- list(letters[1:2], letters[1:2])
   V <- matrixsqrt(M)
   V <- matrixinvsqrt(M)
   V <- matrixpower(M, 1/2)
+  U <- matrixsqrt(abs(M), complexOK=FALSE)
 
   #' infrastructure
   A <- matrix(1:12, 3, 4)
