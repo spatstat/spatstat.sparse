@@ -192,6 +192,7 @@ local({
     tensorSparse(c(1,-1), M, 1, 3)
     tensorSparse(M, M, 1:2, 1:2)
     tensorSparse(M, M, 1:2, 2:1)
+    tensorSparse(as.array(M), as.array(M), 1:2, 2:1)
     V <- sparseVector(i=c(1,3,6),x=1:3, length=7)
     tensorSparse(V,V)
     tensorSparse(V,V,1,1)
@@ -206,6 +207,7 @@ local({
 
     v <- 0:3
     tensor1x1(v, Mfix)
+    tensor1x1(v, as.array(Mfix))
     tensor1x1(as(v, "sparseVector"), Mfix)
     
     ## test of anyNA method
