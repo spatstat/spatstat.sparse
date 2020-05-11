@@ -5,7 +5,7 @@ require(spatstat.sparse)
 ALWAYS <- FULLTEST <- TRUE
 #'    tests/sparse3Darrays.R
 #'  Basic tests of code in sparse3Darray.R and sparsecommon.R
-#'  $Revision: 1.25 $ $Date: 2020/05/09 12:22:52 $
+#'  $Revision: 1.27 $ $Date: 2020/05/11 01:42:58 $
 
 if(!exists("ALWAYS")) ALWAYS <- TRUE
 if(!exists("FULLTEST")) FULLTEST <- ALWAYS
@@ -189,26 +189,27 @@ local({
     Mduf <- Msub - M
     
     ## tensor operator
-    tensorSparse(c(1,-1), M, 1, 3)
-    tensorSparse(M, M, 1:2, 1:2)
-    tensorSparse(M, M, 1:2, 2:1)
-    tensorSparse(as.array(M), as.array(M), 1:2, 2:1)
+    o <- tensorSparse(c(1,-1), M, 1, 3)
+    o <- tensorSparse(M, M, 1:2, 1:2)
+    o <- tensorSparse(M, M, 1:2, 2:1)
+    o <- tensorSparse(as.array(M), as.array(M), 1:2, 2:1)
     V <- sparseVector(i=c(1,3,6),x=1:3, length=7)
-    tensorSparse(V,V)
-    tensorSparse(V,V,1,1)
+    o <- tensorSparse(V,V)
+    o <- tensorSparse(V,V,1,1)
+    o <- tensorSparse(M,V[1:5],1,1)
     A <- sparseMatrix(i=integer(0), j=integer(0), x=numeric(0), dims=c(7, 15))
     A[1:4, 2:5] <- 3
-    tensorSparse(A, A, 1, 1)
-    tensorSparse(t(A), A, 2, 1)
-    tensorSparse(V, A, 1, 1)
-    tensorSparse(t(A), V, 2, 1)
-    tensorSparse(as.vector(V), A, 1, 1)
-    tensorSparse(t(A), as.vector(V), 2, 1)
+    o <- tensorSparse(A, A, 1, 1)
+    o <- tensorSparse(t(A), A, 2, 1)
+    o <- tensorSparse(V, A, 1, 1)
+    o <- tensorSparse(t(A), V, 2, 1)
+    o <- tensorSparse(as.vector(V), A, 1, 1)
+    o <- tensorSparse(t(A), as.vector(V), 2, 1)
 
     v <- 0:3
-    tensor1x1(v, Mfix)
-    tensor1x1(v, as.array(Mfix))
-    tensor1x1(as(v, "sparseVector"), Mfix)
+    o <- tensor1x1(v, Mfix)
+    o <- tensor1x1(v, as.array(Mfix))
+    o <- tensor1x1(as(v, "sparseVector"), Mfix)
     
     ## test of anyNA method
     anyNA(M)
@@ -320,10 +321,8 @@ local({
     UU <- sumsymouterSparse(Ucom, w)
     #' 
   }
-})
 
-local({
-  # 1 x 1 x 1 arrays
+  ## 1 x 1 x 1 arrays
   M1 <- sparse3Darray(i=1, j=1, k=1, x=42, dims=rep(1,3))
   M0 <- sparse3Darray(                     dims=rep(1,3))
   i1 <- matrix(1, 1, 3)
@@ -333,4 +332,5 @@ local({
   M <- as.sparse3Darray(A)
   M[rep(1,3), c(1,1,2), rep(2, 3)]
 })
+
 }

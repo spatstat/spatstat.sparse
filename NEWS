@@ -1,205 +1,139 @@
 
-        CHANGES IN spatstat.utils VERSION 1.15-0
+        CHANGES IN spatstat.sparse VERSION 1.0-8
 
 OVERVIEW
 
-    o Added more internal code.
+    o Internal code improvements.
 
 
-        CHANGES IN spatstat.utils VERSION 1.14-1
-
-OVERVIEW
-
-    o Minor administrative changes.
-
-        CHANGES IN spatstat.utils VERSION 1.14-0
-
-NEW FUNCTIONS
-
-    o taperoff
-    Utility for tapering values smoothly to zero.
-    
-
-        CHANGES IN spatstat.utils VERSION 1.13-0
+        CHANGES IN spatstat.sparse VERSION 1.0-7
 
 OVERVIEW
 
-    o internal bug fix.
+    o Internal code tweaks.
 
-        CHANGES IN spatstat.utils VERSION 1.12-0
 
-NEW FUNCTIONS
+        CHANGES IN spatstat.sparse VERSION 1.0-6
 
-    o percentage
-    Programmer's utility to convert a number to a percentage.
+OVERVIEW
+
+    o More documentation.
 
 SIGNIFICANT USER-VISIBLE CHANGES
 
-    o queueSpatstatLocator
-    Handles any data acceptable to xy.coords()
+    o marginSumsSparse
+    This function is now documented.
+
+        CHANGES IN spatstat.sparse VERSION 1.0-5
+
+OVERVIEW
+
+    o More support for complex values
+
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o sumouter, quadform, bilinearform
+    These functions now handle complex-valued matrices and vectors.
+
+    o marginSumsSparse
+    This function now handles complex-valued sparse arrays.
     
-        CHANGES IN spatstat.utils VERSION 1.11-0
+        CHANGES IN spatstat.sparse VERSION 1.0-4
 
-NEW FUNCTIONS
+OVERVIEW
 
-    o queueSpatstatLocator
-    Add (x,y) coordinate pairs to a queue
-    that can be accessed by 'spatstatLocator'.
+    o spatstat.sparse now 'requires' the Matrix package.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o spatstat.sparse package
+    spatstat.sparse now 'requires' the Matrix package, so that
+    Matrix is loaded when spatstat.sparse is loaded.
+
+        CHANGES IN spatstat.sparse VERSION 1.0-3
+
+OVERVIEW
+
+    o More documentation.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o "[.sparse3Darray"
+    The subset extraction operator is now documented.
+
+    o "[<-.sparse3Darray"
+    The subset assignment operator is now documented.
+
+    o as.array.sparse3Darray
+    This method is now documented.
+
+    o anyNA.sparse3Darray
+    This method is now documented.
+
+    o dim.sparse3Darray, "dim<-.sparse3Darray"
+    These methods are now documented.
+
+    o dimnames.sparse3Darray, "dimnames<-.sparse3Darray"
+    These methods are now documented.
     
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o spatstatLocator
-    Now works in non-interactive sessions,
-    returning previously-queued coordinates,
-    for use in software testing.
-
-        CHANGES IN spatstat.utils VERSION 1.10-0
-
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o NEWS file
-    spatstat.utils now has its own NEWS file.
-
-        CHANGES IN spatstat.utils VERSION 1.9-5
-	
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o None.
-    Minor internal improvements only.
+    o sumouter
+    A mathematical statement in the help file has been corrected.
     
-        CHANGES IN spatstat.utils VERSION 1.9-4
+        CHANGES IN spatstat.sparse VERSION 1.0-2
+
+OVERVIEW
+
+    o More documentation
+
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o sparse3Darray
+    This function is now documented.
+    
+    o aperm.sparse3Darray
+    This function is now documented.
+    
+    o as.sparse3Darray
+    This function is now documented.
+    
+    o tensorSparse
+    This function is now documented.
+    
+    o Math.sparse3Darray, Ops.sparse3Darray, Complex.sparse3Darray,
+    Summary.sparse3Darray
+    The methods for the group generics are now documented.
+
+
+        CHANGES IN spatstat.sparse VERSION 1.0-1
+
+OVERVIEW
+
+    o Corrections to the internal structure.
+
+    o Bug fixes.
+
+    o More functions are documented
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o sumsymouter
+    New argument 'distinct'.
 
 BUG FIXES
 
-    o orderwhich
-    Crashed if decreasing=TRUE.
+    o sumsymouter
+    Results were incorrect for sparse arrays in some cases:
+    some contributions to the sum were omitted.
     Fixed.
-    
-        CHANGES IN spatstat.utils VERSION 1.9-3
 
-NEW FUNCTIONS
+        CHANGES IN spatstat.sparse VERSION 1.0-0
 
-    o sortunique
-    A faster version of sort(unique(x)) for numeric x.
+OVERVIEW
 
-        CHANGES IN spatstat.utils VERSION 1.9-2
-
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o orderwhich
-    Accelerated.
-    
-        CHANGES IN spatstat.utils VERSION 1.9-1
-
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o orderstats
-    Accelerated.
-    
-        CHANGES IN spatstat.utils VERSION 1.9-0
-
-NEW FUNCTIONS
-
-    o check.anyvector
-    Utility to check for a vector or factor with correct length.
-    
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o tapplysum
-    Argument 'x' can contain complex numbers.
-    
-        CHANGES IN spatstat.utils VERSION 1.8-1
-
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o slight increase in speed.
-    
-        CHANGES IN spatstat.utils VERSION 1.8-0
-
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o tapplysum
-    Now works in dimension 1
-    (i.e. when 'flist' is a list containing a single factor).
-    
-BUG FIXES
-
-   o graphics code
-   'zlim' was not recognised as a graphics parameter in some cases.
-   Fixed.
-
-        CHANGES IN spatstat.utils VERSION 1.7-1
-
-BUG FIXES
-
-   o graphics code
-   'main' was not recognised as a graphics parameter in some cases.
-   Fixed.
-
-
-        CHANGES IN spatstat.utils VERSION 1.7-0
-
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o fastFindInterval
-    Labels are shorter (generated when labels=TRUE).
-    New argument 'dig.lab' controls their length.
-    
-    
-BUG FIXES
-
-   o expand.polynom
-   Result was syntactically incorrect in some cases.
-   Fixed.
-
-
-        CHANGES IN spatstat.utils VERSION 1.6-0
-
-NEW FUNCTIONS
-
-    o "lhs.of.formula<-", "rhs.of.formula<-"
-    Assignment operators for formulae.
-    
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o matchIntegerDataFrames
-    New argument 'sort'.
-    
-BUG FIXES
-
-   o verbalogic
-   Returned prematurely in some cases.
-   Fixed.
-
-
-        CHANGES IN spatstat.utils VERSION 1.5-1
-
-NEW FUNCTIONS
-
-    o matchIntegerDataFrames
-    A fast function for finding identical rows in two data frames of integers.
-    
-        CHANGES IN spatstat.utils VERSION 1.5-0
-
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o Internal changes to satisfy CRAN requirements.
-
-
-        CHANGES IN spatstat.utils VERSION 1.4-1
-
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o Internal changes to satisfy CRAN requirements.
-    
-
-        CHANGES IN spatstat.utils VERSION 1.4-0
-
-SIGNIFICANT USER-VISIBLE CHANGES
-
-    o Internal code now runs in the Datacamp environment.
+    o This new package has been created from
+    code removed from the spatstat package.
     
 
 
-
-   

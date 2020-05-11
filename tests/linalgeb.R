@@ -8,7 +8,7 @@ ALWAYS <- FULLTEST <- TRUE
 ##
 ## checks validity of linear algebra code
 ##
-##  $Revision: 1.8 $ $Date: 2020/05/09 13:13:26 $
+##  $Revision: 1.11 $ $Date: 2020/05/11 01:38:45 $
 ##
 
 local({
@@ -41,21 +41,30 @@ local({
   a <- sumouter(x + 1i)
   b <- sumouter(x + 1i, w + 1i)
   d <- sumouter(x + 1i, w + 1i, x - 1i)
+
+  #' NA values
+  xna <- x; xna[1,1] <- NA
+  wna <- w; w[2] <- NA
+  o <- sumouter(xna)
+  o <- sumouter(xna, w)
+  o <- sumouter(xna, wna)
   
   #' sumsymouter
   x <- array(as.numeric(1:(p * n * n)), dim=c(p, n, n))
   w <- matrix(1:(n*n), n, n)
   y <- matrix(numeric(p * p), p, p)
+  #' check correctness
   for(i in 1:n)
     for(j in (1:n)[-i])
       y <- y + w[i,j] * outer(x[,i,j], x[,j,i])
   z <- sumsymouter(x, w)
   if(!identical(y,z))
     stop("sumsymouter gives incorrect result")
-
-  #' complex sumsymouter
+  #' cover code blocks
+  o <- sumsymouter(x, distinct=FALSE)
   a <- sumsymouter(x + 1i)
   b <- sumsymouter(x + 1i, w + 1i)
+  if(require(Matrix)) o <- sumsymouter(x, as(w, "sparseMatrix"))
   
   #' power of complex matrix
   M <- diag(c(4,-4))
@@ -71,4 +80,8 @@ local({
   check.mat.mul(A, B)
   check.mat.mul(A, B[,1])
   check.mat.mul(A, A, fatal=FALSE)
+  D <- diag(c(1,4,9))
+  checksolve(D)
+  D[1,1] <- 0
+  checksolve(D, "silent")
 })

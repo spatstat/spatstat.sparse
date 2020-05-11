@@ -1,0 +1,212 @@
+Change Log for spatstat.sparse
+------------------------------
+
+02 may 2020
+
+   DESCRIPTION
+   NEWS
+   NAMESPACE [automatic]
+   man/spatstat.sparse-internal.Rd
+   man/spatstat.sparse-package.Rd
+   inst/doc/packagesizes.txt [automatic]
+   src/init.c [automatic]
+   src/proto.h [automatic]
+   .Rbuildignore
+      Package structure initialised.
+
+   R/indices.R
+   R/linalg.R
+   R/matrixpower.R
+   R/sparse3Darray.R
+   R/sparsecommon.R
+   R/sparselinalg.R
+   src/chunkloop.h
+   src/sumsymouter.h
+   src/spasumsymout.h
+   src/linalg.c
+   src/sparselinalg.c
+   man/macros/defns.Rd
+   man/matrixpower.Rd
+   man/sumouter.Rd
+   tests/linalgeb.R
+   tests/sparse3Darrays.R
+	Copied files from spatstat.
+
+   sparselinalg.R
+   spatstat.sparse-internal.Rd
+       'tenseur' renamed 'tensorSparse'
+
+   tests/sparse3Darrays.R
+	Consequential changes.
+	
+   DESCRIPTION
+   NEWS
+	Version 1.0-0
+
+   >>>>>>>>>> passed R-4.0.0 CMD check <<<<<<<<<<
+   >>>>>>>>>> committed to github      <<<<<<<<<<
+   
+04 may 2020
+
+   indices.R
+   sparsecommon.R
+   sparse3Darray.R
+	Some code rearranged.
+	
+   sumsymouter.h
+   linalg.c
+   linalg.R
+   spatstat-internal.Rd
+	sumsymouter has new argument 'distinct'
+
+   sparselinalg.R
+   spatstat.sparse-internal.Rd
+   	sumsymouterSparse has new argument 'distinct'
+
+   sparselinalg.R
+   sparselinalg.c
+   spasumsymout.h
+	sumsymouterSparse(dbg=TRUE) now activates debug statements in C
+
+   spasumsymout.h
+	Important bug fix.
+	
+   DESCRIPTION
+   NEWS
+	Version 1.0-1
+
+   >>>>>>>>>> passed R-4.0.0 CMD check <<<<<<<<<<
+   >>>>>>>>>> committed to github      <<<<<<<<<<
+
+05 may 2020
+
+   tests/sparse3Darrays.R
+	Use data example which provokes previous bug in spatstat 1.64-0
+
+   sparse3Darray.R
+	Enforce conversion of indices to integer
+
+   Math.sparse3Darray.Rd [NEW FILE]
+   aperm.sparse3Darray.Rd [NEW FILE]
+   as.sparse3Darray.Rd [NEW FILE]
+   sparse3Darray.Rd [NEW FILE]
+   tensorSparse.Rd [NEW FILE]
+   spatstat.sparse-package.Rd
+   spatstat.sparse-internal.Rd
+	Started documenting functions.
+	
+   DESCRIPTION
+   NEWS
+	Version 1.0-2
+
+   >>>>>>>>>> passed R-4.0.0 CMD check <<<<<<<<<<
+   >>>>>>>>>> committed to github      <<<<<<<<<<
+   
+06 may 2020
+
+   Extract.sparse3Darray.Rd [NEW FILE]
+   as.array.sparse3Darray.Rd [NEW FILE]
+   methods.sparse3Darray.Rd [NEW FILE]
+   spatstat.sparse-internal.Rd
+   spatstat.sparse-package.Rd
+   	Added more documentation
+	
+   DESCRIPTION
+   NEWS
+	Version 1.0-3
+
+   >>>>>>>>>> passed R-4.0.0 CMD check <<<<<<<<<<
+   >>>>>>>>>> committed to github      <<<<<<<<<<
+
+   sumouter.Rd
+	Mathematical correction.
+
+   >>>>>>>>>> passed R-4.0.0 CMD check <<<<<<<<<<
+   >>>>>>>>>> committed to github      <<<<<<<<<<
+
+
+   DESCRIPTION
+   NEWS
+	package 'Matrix' is now Required.
+	Version 1.0-4	
+
+   >>>>>>>>>> passed R-4.0.0 CMD check <<<<<<<<<<
+   >>>>>>>>>> committed to github      <<<<<<<<<<
+
+08 may 2020
+
+   linalg.R
+   sumouter.Rd
+   tests/linalgeb.R
+	sumouter, quadform, bilinearform, sumsymouter
+	now handle complex values.
+
+   sparselinalg.R
+	sumsymouterSparse now handles complex values.
+	
+   DESCRIPTION
+   NEWS
+	Version 1.0-5
+
+   >>>>>>>>>> passed R-4.0.0 CMD check <<<<<<<<<<
+   >>>>>>>>>> committed to github      <<<<<<<<<<
+
+09 may 2020
+
+   sparselinalg.R
+	Commented-out unused code.
+
+   marginSumsSparse.Rd [NEW FILE]
+   	More documentation.
+
+   tests/linalgeb.R
+   tests/sparse3Darrays.R
+        More tests
+
+   DESCRIPTION
+   NEWS
+	Version 1.0-6
+
+   >>>>>>>>>> passed R-4.0.0 CMD check <<<<<<<<<<
+   >>>>>>>>>> committed to github      <<<<<<<<<<
+	
+   tests/sparse3Darrays.R
+	Tweak.
+
+   DESCRIPTION
+   NEWS
+	Version 1.0-7
+
+   >>>>>>>>>> passed R-4.0.0 CMD check <<<<<<<<<<
+   >>>>>>>>>> committed to github      <<<<<<<<<<
+
+11 may 2020
+
+   linalg.R
+	Bug fix in handling NA's in weights.
+	
+   tests/linalgeb.R
+   tests/sparse3Darrays.R
+	Tweaks and fixes.
+
+   tests/indices.R [NEW FILE]
+   	Tests for R/indices.R from spatstat
+
+   ChangeLog.txt [NEW FILE]
+   	This file added.
+
+   NEWS
+	Now contains actual news (Izvestiya + Pravda)
+	
+   DESCRIPTION
+   NEWS
+	Version 1.0-8
+
+   >>>>>>>>>> passed R-4.0.0 CMD check <<<<<<<<<<
+   >>>>>>>>>> committed to github      <<<<<<<<<<
+
+
+   
+	
+
+   

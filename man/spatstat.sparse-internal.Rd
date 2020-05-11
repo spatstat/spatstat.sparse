@@ -2,11 +2,13 @@
 \title{Internal Functions of spatstat.sparse Package}
 \alias{spatstat.sparse-internal} %DoNotExport
 %% indices
-\alias{fullIndexSequence}
 \alias{grokIndexVector}
-\alias{replacementIndex}
-\alias{representativeRows}
 \alias{strictIndexSequence}
+\alias{fullIndexSequence}
+\alias{replacementIndex}
+\alias{positiveIndex}
+\alias{logicalIndex}
+\alias{representativeRows}
 %%%%  undocumented linear algebra
 \alias{checksolve}
 \alias{check.mat.mul}
@@ -36,11 +38,13 @@
 }
 \usage{
 %% indices
-fullIndexSequence(g)
 grokIndexVector(ind, len, nama)
-replacementIndex(ii, stuff)
-representativeRows(x)
 strictIndexSequence(g)
+fullIndexSequence(g)
+replacementIndex(ii, stuff)
+positiveIndex(i, nama, len)
+logicalIndex(i, nama, len)
+representativeRows(x)
 %%% undocumented linear algebra
 checksolve(M, action, descrip, target)
 check.mat.mul(A, B, Acols, Brows, fatal)
