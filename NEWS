@@ -5,6 +5,11 @@ OVERVIEW
 
     o Internal code improvements.
 
+BUG FIXES
+
+    o sumouter
+    Crashed if 'w' contained NA values.
+    Fixed.
 
         CHANGES IN spatstat.sparse VERSION 1.0-7
 
