@@ -1,6 +1,6 @@
 # spatstat.sparse
 
-## sparse 3-dimensional arrays and linear algebra utilities
+## Sparse 3-dimensional arrays and linear algebra utilities
 
 [![CRAN status](http://www.r-pkg.org/badges/version/spatstat.sparse)](http://cran.r-project.org/web/packages/spatstat.sparse)
 ![R-CMD-check](https://github.com/spatstat/spatstat.sparse/workflows/R-CMD-check/badge.svg)
@@ -12,7 +12,7 @@ This repository contains the current _development version_ of the
 The package has just been submitted for publication on CRAN,
 but is not yet published.
 
-### functionality
+### Functionality provided
 
 The `spatstat.sparse` package
 
