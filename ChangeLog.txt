@@ -213,7 +213,19 @@ Change Log for spatstat.sparse
                   (2020-05-09 r78395)
 
    !!!!!!!!!!  submitted to CRAN  !!!!!!!!!!!!!!!
-   
-	
 
+22 may 2020
+
+   tests/linalgeb.R
+	More code coverage
+
+   matrixpower.R
+	Tweaks
+	
+   DESCRIPTION
+   NEWS
+	Version 1.0-9
+
+   >>>>>>>>>> passed R-4.0.0 CMD check <<<<<<<<<<
+   >>>>>>>>>> committed to github      <<<<<<<<<<
    

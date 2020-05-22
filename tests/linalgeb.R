@@ -45,9 +45,20 @@ local({
   #' NA values
   xna <- x; xna[1,1] <- NA
   wna <- w; w[2] <- NA
+  yna <- x; yna[2,2] <- NA
   o <- sumouter(xna)
   o <- sumouter(xna, w)
+  o <- sumouter(xna, w, yna)
   o <- sumouter(xna, wna)
+  o <- sumouter(xna, wna, yna)
+
+  #' repeat coverage of quadform, bilinearform
+  v <- diag(p)
+  a1 <- quadform(x, v)
+  a2 <- bilinearform(x, v, x)
+  if(max(abs(a1-a2)) > 0) { # Integers!
+    stop("Disagreement between quadform and bilinearform")
+  }
   
   #' sumsymouter
   x <- array(as.numeric(1:(p * n * n)), dim=c(p, n, n))
@@ -62,9 +73,14 @@ local({
     stop("sumsymouter gives incorrect result")
   #' cover code blocks
   o <- sumsymouter(x, distinct=FALSE)
+  o <- sumsymouter(x, w, distinct=FALSE)
   a <- sumsymouter(x + 1i)
   b <- sumsymouter(x + 1i, w + 1i)
-  if(require(Matrix)) o <- sumsymouter(x, as(w, "sparseMatrix"))
+  if(require(Matrix)) {
+    o <- sumsymouter(x, as(w, "sparseMatrix"))
+    u <- sumsymouter(as.sparse3Darray(x))
+    u <- sumsymouter(as.sparse3Darray(x), w)
+  }
   
   #' power of complex matrix
   M <- diag(c(4,-4))

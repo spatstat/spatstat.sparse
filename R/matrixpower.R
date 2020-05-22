@@ -10,7 +10,7 @@ matrixsqrt <- function(x, complexOK=TRUE) {
     stop("x must be a matrix")
   if(!is.matrix(x))
     x <- as.matrix(x)
-  if(missing(complexOK) && is.complex(x)) complexOK <- TRUE
+  complexOK <- !isFALSE(as.logical(complexOK))
   if(!complexOK) stopifnot(is.numeric(x)) else
                  stopifnot(is.numeric(x) || is.complex(x))
   e <- eigen(x)
@@ -33,7 +33,7 @@ matrixinvsqrt <- function(x, complexOK=TRUE) {
     stop("x must be a matrix")
   if(!is.matrix(x))
     x <- as.matrix(x)
-  if(missing(complexOK) && is.complex(x)) complexOK <- TRUE
+  complexOK <- !isFALSE(as.logical(complexOK))
   if(!complexOK) stopifnot(is.numeric(x)) else
                  stopifnot(is.numeric(x) || is.complex(x))
   e <- eigen(x)
@@ -58,7 +58,7 @@ matrixpower <- function(x, power, complexOK=TRUE) {
     stop("x must be a matrix")
   if(!is.matrix(x))
     x <- as.matrix(x)
-  if(missing(complexOK) && is.complex(x)) complexOK <- TRUE
+  complexOK <- !isFALSE(as.logical(complexOK))
   if(!complexOK) stopifnot(is.numeric(x)) else
                  stopifnot(is.numeric(x) || is.complex(x))
   e <- eigen(x)
