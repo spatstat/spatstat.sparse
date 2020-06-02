@@ -3,7 +3,10 @@
 #'
 #' Sparse 3D arrays represented as list(i,j,k,x)
 #' 
-#' $Revision: 1.41 $  $Date: 2020/05/05 03:08:39 $
+#' Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
+#' GNU Public Licence >= 2.0
+#'
+#' $Revision: 1.43 $  $Date: 2020/06/02 01:07:40 $
 #'
 
 sparse3Darray <- function(i=integer(0), j=integer(0), k=integer(0),

@@ -3,8 +3,10 @@
 #'
 #'   Counterpart of linalg.R for sparse matrices/arrays
 #'
+#'   Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
+#'   GNU Public Licence >= 2.0
 #' 
-#'   $Revision: 1.16 $  $Date: 2020/05/09 12:17:37 $
+#'   $Revision: 1.18 $  $Date: 2020/06/02 01:07:35 $
 
 marginSumsSparse <- function(X, MARGIN) {
   #' equivalent to apply(X, MARGIN, sum)

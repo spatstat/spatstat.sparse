@@ -3,7 +3,10 @@
 #'
 #'  Utilities for sparse arrays
 #'
-#'  $Revision: 1.16 $  $Date: 2020/05/03 03:24:49 $
+#'  Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
+#'  GNU Public Licence >= 2.0
+#' 
+#'  $Revision: 1.17 $  $Date: 2020/06/02 01:10:23 $
 #'
 
 #'  .............. completely generic ....................

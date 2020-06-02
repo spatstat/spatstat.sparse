@@ -1,10 +1,13 @@
-#
-# linalg.R
-#
-#  Linear Algebra
-#
-# $Revision: 1.32 $ $Date: 2020/05/11 01:29:27 $
-#
+#'
+#' linalg.R
+#'
+#'  Linear Algebra
+#'
+#'  Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
+#'  GNU Public Licence >= 2.0
+#'
+#' $Revision: 1.34 $ $Date: 2020/06/02 01:07:52 $
+#'
 
 sumouter <- function(x, w=NULL, y=x) {
   #' compute matrix sum_i (w[i] * outer(x[i,], y[i,]))

@@ -3,7 +3,10 @@
 #'
 #'   Code for handling vector/array indices
 #'
-#'   $Revision: 1.12 $  $Date: 2020/05/03 03:10:15 $
+#'   Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
+#'   GNU Public Licence >= 2.0 
+#' 
+#'   $Revision: 1.13 $  $Date: 2020/06/02 01:06:39 $
 #'
 
 grokIndexVector <- function(ind, len, nama=NULL) {
