@@ -9,16 +9,18 @@
 This repository contains the current _development version_ of the
 `spatstat.sparse` package.
 
-The package has just been submitted for publication on CRAN,
-but is not yet published.
+For the most recent _official release_ of `spatstat.sparse`,
+see the [CRAN page](https://cran.r-project.org/web/packages/spatstat.sparse). 
 
 ### Functionality provided
 
-The `spatstat.sparse` package
+The `spatstat.sparse` package is a small subset of code from
+original `spatstat` package, which has been documented and improved.
+It provides:
 
-  - defines a class of sparse three-dimensional arrays
-    and supports standard operations on them.
+  - a class of sparse three-dimensional arrays
+    and standard operations on them.
 
-  - provides utility functions for matrix computations
+  - utility functions for matrix computations
     that are common in statistics,
     such as quadratic forms.

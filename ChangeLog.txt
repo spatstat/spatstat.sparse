@@ -249,6 +249,7 @@ Change Log for spatstat.sparse
    >>>>>>>>>> passed R-4.0.0 CMD check <<<<<<<<<<
    >>>>>>>>>> passed R-devel CMD check <<<<<<<<<<  (2020-06-01 r78624)
    >>>>>>>>>> committed to github      <<<<<<<<<<
+   >>>>>>>>>> SUBMITTED TO CRAN <<<<<<<<<<<<<<<<<
 
 
    
