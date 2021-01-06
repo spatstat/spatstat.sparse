@@ -23,7 +23,7 @@ Description: Defines sparse three-dimensional arrays
 	     matrix calculations that are common in
 	     statistics, such as quadratic forms.
 License: GPL (>= 2)
-URL: http://spatstat.org
+URL: http://spatstat.org/
 LazyData: no
 NeedsCompilation: yes
 ByteCompile: true
