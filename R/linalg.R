@@ -6,7 +6,7 @@
 #'  Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #'  GNU Public Licence >= 2.0
 #'
-#' $Revision: 1.34 $ $Date: 2020/06/02 01:07:52 $
+#' $Revision: 1.35 $ $Date: 2021/01/08 01:16:48 $
 #'
 
 sumouter <- function(x, w=NULL, y=x) {
@@ -76,14 +76,14 @@ sumouter <- function(x, w=NULL, y=x) {
     n <- ncol(tx)
     p <- nrow(tx)
     if(is.null(w)) {
-      zz <- .C("Csumouter",
+      zz <- .C(SP_Csumouter,
                x=as.double(tx),
                n=as.integer(n),
                p=as.integer(p),
                y=as.double(numeric(p * p)),
                PACKAGE = "spatstat.sparse")
     } else {
-      zz <- .C("Cwsumouter",
+      zz <- .C(SP_Cwsumouter,
                x=as.double(tx),
                n=as.integer(n),
                p=as.integer(p),
@@ -99,7 +99,7 @@ sumouter <- function(x, w=NULL, y=x) {
     px <- nrow(tx)
     py <- nrow(ty)
     if(is.null(w)) {
-      zz <- .C("Csum2outer",
+      zz <- .C(SP_Csum2outer,
                x=as.double(tx),
                y=as.double(ty),
                n=as.integer(n),
@@ -108,7 +108,7 @@ sumouter <- function(x, w=NULL, y=x) {
                z=as.double(numeric(px * py)),
                PACKAGE = "spatstat.sparse")
     } else {
-      zz <- .C("Cwsum2outer",
+      zz <- .C(SP_Cwsum2outer,
                x=as.double(tx),
                y=as.double(ty),
                n=as.integer(n),
@@ -163,7 +163,7 @@ quadform <- function(x, v) {
     tx <- tx[ , ok, drop=FALSE]
     n <- ncol(tx)
   }
-  z <- .C("Cquadform",
+  z <- .C(SP_Cquadform,
           x=as.double(tx),
           n=as.integer(n),
           p=as.integer(p),
@@ -220,7 +220,7 @@ bilinearform <- function(x, v, y) {
     if(nrow(v) != ncol(v)) stop("v should be a square matrix")
     stopifnot(ncol(x) == nrow(v))
   }
-  z <- .C("Cbiform",
+  z <- .C(SP_Cbiform,
           x=as.double(tx),
           y=as.double(ty),
           n=as.integer(n),
@@ -275,14 +275,14 @@ sumsymouter <- function(x, w=NULL, distinct=TRUE) {
   if(!distinct) {
     ## contributions from all pairs i,j
     if(is.null(w)) {
-      zz <- .C("Csumsymouter",
+      zz <- .C(SP_Csumsymouter,
                x = as.double(x),
                p = as.integer(p),
                n = as.integer(n),
                y = as.double(numeric(p * p)),
                PACKAGE = "spatstat.sparse")
     } else {
-      zz <- .C("Cwsumsymouter",
+      zz <- .C(SP_Cwsumsymouter,
                x = as.double(x),
                w = as.double(w),
                p = as.integer(p),
@@ -293,14 +293,14 @@ sumsymouter <- function(x, w=NULL, distinct=TRUE) {
   } else {
     ## contributions from pairs i != j
     if(is.null(w)) {
-      zz <- .C("CsumDsymouter",
+      zz <- .C(SP_CsumDsymouter,
                x = as.double(x),
                p = as.integer(p),
                n = as.integer(n),
                y = as.double(numeric(p * p)),
                PACKAGE = "spatstat.sparse")
     } else {
-      zz <- .C("CwsumDsymouter",
+      zz <- .C(SP_CwsumDsymouter,
                x = as.double(x),
                w = as.double(w),
                p = as.integer(p),

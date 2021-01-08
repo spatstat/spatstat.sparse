@@ -36,4 +36,5 @@ void R_init_spatstat_sparse(DllInfo *dll)
 {
     R_registerRoutines(dll, CEntries, NULL, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
+    R_forceSymbols(dll, TRUE); 
 }

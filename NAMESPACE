@@ -1,23 +1,23 @@
-# spatstat.sparse NAMESPACE file
+## spatstat.sparse NAMESPACE file
+
+## ................  Import packages ..................
 
 import(stats,graphics,grDevices,utils,methods)
 import(Matrix,abind,tensor)
 import(spatstat.utils)
 
-# Do not edit the following.
-# It is generated automatically.
+## ................ Load dynamic library ..............
+##      (native routines are registered in init.c)
+##      (entry points are symbols with prefix "SP_")
+
+useDynLib(spatstat.sparse, .registration=TRUE, .fixes="SP_")
+
+## //////////  DO NOT EDIT THE FOLLOWING  ///////////////
+## ////////  it is generated automatically  /////////////
 
 
 
-# .................................................. 
-#  load dynamic library
-#      (native routines are now registered in init.c)
-# .................................................. 
 
-# Not yet using native symbols - not until excised from spatstat
-# useDynLib(spatstat.sparse, .registration=TRUE, .fixes="C_")
-
-useDynLib(spatstat.sparse, .registration=TRUE)
 
 # .................................................. 
 # Automatically-generated list of documented objects 
@@ -33,10 +33,10 @@ export("check.anySparseVector")
 export("check.mat.mul")
 export("checksolve")
 export("Complex.sparse3Darray")
-export("dimnames<-.sparse3Darray")
 export("dimnames.sparse3Darray")
-export("dim<-.sparse3Darray")
+export("dimnames<-.sparse3Darray")
 export("dim.sparse3Darray")
+export("dim<-.sparse3Darray")
 export("EntriesToSparse")
 export("evalSparse3Dentrywise")
 export("expandSparse")
@@ -61,8 +61,8 @@ export("RelevantNA")
 export("RelevantZero")
 export("replacementIndex")
 export("representativeRows")
-export("[<-.sparse3Darray")
 export("[.sparse3Darray")
+export("[<-.sparse3Darray")
 export("sparse3Darray")
 export("SparseEntries")
 export("SparseIndices")

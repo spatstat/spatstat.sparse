@@ -6,7 +6,7 @@
 #'   Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #'   GNU Public Licence >= 2.0
 #' 
-#'   $Revision: 1.18 $  $Date: 2020/06/02 01:07:35 $
+#'   $Revision: 1.19 $  $Date: 2021/01/08 01:16:41 $
 
 marginSumsSparse <- function(X, MARGIN) {
   #' equivalent to apply(X, MARGIN, sum)
@@ -244,7 +244,7 @@ sumsymouterSparse <- function(x, w=NULL, distinct=TRUE, dbg=FALSE) {
   }
   if(!dbg) {
     if(is.null(w)) {
-      z <- .C("CspaSumSymOut",
+      z <- .C(SP_CspaSumSymOut,
               m = as.integer(m),
               n = as.integer(n),
               lenx = as.integer(nrow(df)),
@@ -261,7 +261,7 @@ sumsymouterSparse <- function(x, w=NULL, distinct=TRUE, dbg=FALSE) {
       dfw <- data.frame(j=w@i, k=w@j, w=w@x)
       woo <- with(dfw, order(j, k))
       dfw <- dfw[woo, , drop=FALSE]
-      z <- .C("CspaWtSumSymOut",
+      z <- .C(SP_CspaWtSumSymOut,
               m = as.integer(m),
               n = as.integer(n),
               lenx = as.integer(nrow(df)),
@@ -279,7 +279,7 @@ sumsymouterSparse <- function(x, w=NULL, distinct=TRUE, dbg=FALSE) {
     }
   } else {
     if(is.null(w)) {
-      z <- .C("CDspaSumSymOut",
+      z <- .C(SP_CDspaSumSymOut,
               m = as.integer(m),
               n = as.integer(n),
               lenx = as.integer(nrow(df)),
@@ -296,7 +296,7 @@ sumsymouterSparse <- function(x, w=NULL, distinct=TRUE, dbg=FALSE) {
       dfw <- data.frame(j=w@i, k=w@j, w=w@x)
       woo <- with(dfw, order(j, k))
       dfw <- dfw[woo, , drop=FALSE]
-      z <- .C("CDspaWtSumSymOut",
+      z <- .C(SP_CDspaWtSumSymOut,
               m = as.integer(m),
               n = as.integer(n),
               lenx = as.integer(nrow(df)),
