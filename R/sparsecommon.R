@@ -6,7 +6,7 @@
 #'  Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #'  GNU Public Licence >= 2.0
 #' 
-#'  $Revision: 1.17 $  $Date: 2020/06/02 01:10:23 $
+#'  $Revision: 1.18 $  $Date: 2021/02/06 04:31:41 $
 #'
 
 #'  .............. completely generic ....................
@@ -282,8 +282,15 @@ check.anySparseVector <- function(v, npoints=NULL, fatal=TRUE, things="data poin
 }
 
 representativeRows <- function(x) {
-  # select a unique representative of each equivalence class of rows,
-  # in a numeric matrix or data frame of numeric values.
+  ## select a unique representative of each equivalence class of rows,
+  ## in a numeric matrix or data frame of numeric values.
+  nr <- nrow(x)
+  if(nr == 1L) return(TRUE)
+  if(nr == 2L) {
+    agree <- all(x[1,] == x[2,])
+    ans <- c(TRUE, !agree)
+    return(ans)
+  }
   ord <- do.call(order, as.list(as.data.frame(x)))
   y <- x[ord, , drop=FALSE]
   dy <- apply(y, 2, diff)
