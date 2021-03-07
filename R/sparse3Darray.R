@@ -6,7 +6,7 @@
 #' Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #' GNU Public Licence >= 2.0
 #'
-#' $Revision: 1.43 $  $Date: 2020/06/02 01:07:40 $
+#' $Revision: 1.44 $  $Date: 2021/03/04 07:42:18 $
 #'
 
 sparse3Darray <- function(i=integer(0), j=integer(0), k=integer(0),
@@ -640,11 +640,6 @@ bind.sparse3Darray <- function(A,B,along) {
 anyNA.sparse3Darray <- function(x, recursive=FALSE) {
   anyNA(x$x)
 }
-
-RelevantZero <- function(x) vector(mode=typeof(x), length=1L)
-isRelevantZero <- function(x) identical(x, RelevantZero(x))
-RelevantEmpty <- function(x) vector(mode=typeof(x), length=0L)
-RelevantNA <- function(x) { RelevantZero(x)[2] }
 
 unionOfSparseIndices <- function(A, B) {
   #' A, B are data frames of indices i, j, k
