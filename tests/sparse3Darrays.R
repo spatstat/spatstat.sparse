@@ -5,7 +5,7 @@ require(spatstat.sparse)
 ALWAYS <- FULLTEST <- TRUE
 #'    tests/sparse3Darrays.R
 #'  Basic tests of code in sparse3Darray.R and sparsecommon.R
-#'  $Revision: 1.27 $ $Date: 2020/05/11 01:42:58 $
+#'  $Revision: 1.28 $ $Date: 2021/03/07 07:39:44 $
 
 if(!exists("ALWAYS")) ALWAYS <- TRUE
 if(!exists("FULLTEST")) FULLTEST <- ALWAYS
@@ -88,7 +88,6 @@ local({
   MM <- bind.sparse3Darray(M, M, along=1)
   MM <- bind.sparse3Darray(M, M, along=2)
 
-  RelevantEmpty(42)
 })
 
     

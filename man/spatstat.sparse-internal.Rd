@@ -2,22 +2,12 @@
 \title{Internal Functions of spatstat.sparse Package}
 \alias{spatstat.sparse-internal} %DoNotExport
 %% indices
-\alias{grokIndexVector}
-\alias{strictIndexSequence}
-\alias{fullIndexSequence}
-\alias{replacementIndex}
-\alias{positiveIndex}
-\alias{logicalIndex}
 \alias{representativeRows}
 %%%%  undocumented linear algebra
 \alias{checksolve}
 \alias{check.mat.mul}
 \alias{sumsymouter}
 %% sparse 3D arrays
-\alias{RelevantZero}
-\alias{RelevantNA}
-\alias{RelevantEmpty}
-\alias{isRelevantZero}
 \alias{unionOfSparseIndices}
 \alias{inside3Darray}
 \alias{SparseEntries}
@@ -38,22 +28,12 @@
 }
 \usage{
 %% indices
-grokIndexVector(ind, len, nama)
-strictIndexSequence(g)
-fullIndexSequence(g)
-replacementIndex(ii, stuff)
-positiveIndex(i, nama, len)
-logicalIndex(i, nama, len)
 representativeRows(x)
 %%% undocumented linear algebra
 checksolve(M, action, descrip, target)
 check.mat.mul(A, B, Acols, Brows, fatal)
 sumsymouter(x, w, distinct)
 %% sparse 3D arrays
-RelevantZero(x)
-RelevantNA(x)
-RelevantEmpty(x)
-isRelevantZero(x)
 unionOfSparseIndices(A,B)
 inside3Darray(d, i, j, k)
 SparseEntries(x)
