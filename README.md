@@ -24,3 +24,5 @@ It provides:
   - utility functions for matrix computations
     that are common in statistics,
     such as quadratic forms.
+
+  - utilities for handling different types of array indices.
