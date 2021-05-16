@@ -3,6 +3,7 @@
 ## Sparse 3-dimensional arrays and linear algebra utilities
 
 [![CRAN status](http://www.r-pkg.org/badges/version/spatstat.sparse)](http://cran.r-project.org/web/packages/spatstat.sparse)
+![GitHub R package version](https://img.shields.io/github/r-package/v/spatstat/spatstat.sparse)
 ![R-CMD-check](https://github.com/spatstat/spatstat.sparse/workflows/R-CMD-check/badge.svg)
 [![Code Coverage Score](https://codecov.io/github/spatstat/spatstat.sparse/coverage.svg?branch=master)](https://codecov.io/github/spatstat/spatstat.sparse?branch=master)
 
