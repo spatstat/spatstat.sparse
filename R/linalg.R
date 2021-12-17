@@ -6,7 +6,7 @@
 #'  Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #'  GNU Public Licence >= 2.0
 #'
-#' $Revision: 1.35 $ $Date: 2021/01/08 01:16:48 $
+#' $Revision: 1.37 $ $Date: 2021/12/17 01:17:06 $
 #'
 
 sumouter <- function(x, w=NULL, y=x) {
@@ -130,8 +130,8 @@ quadform <- function(x, v) {
   #' compute vector of values y[i] = x[i, ] %*% v %*% t(x[i,])
   stopifnot(is.matrix(x))
   #'
-  if(missing(v)) {
-    v <- diag(rep.int(1, p))
+  if(missing(v) || is.null(v)) {
+    v <- diag(ncol(x))
   } else {
     stopifnot(is.matrix(v))
     if(nrow(v) != ncol(v)) stop("v should be a square matrix")
@@ -185,6 +185,13 @@ bilinearform <- function(x, v, y) {
   stopifnot(is.matrix(x))
   stopifnot(is.matrix(y))
   stopifnot(identical(dim(x), dim(y)))
+  if(missing(v) || is.null(v)) {
+    v <- diag(ncol(x))
+  } else {
+    stopifnot(is.matrix(v))
+    if(nrow(v) != ncol(v)) stop("v should be a square matrix")
+    stopifnot(ncol(x) == nrow(v))
+  }
   #' handle complex values
   if(is.complex(v)) {
     a <- bilinearform(x, Re(v), y)
@@ -212,13 +219,6 @@ bilinearform <- function(x, v, y) {
     tx <- tx[ , ok, drop=FALSE]
     ty <- ty[ , ok, drop=FALSE]
     n <- ncol(tx)
-  }
-  if(missing(v)) {
-    v <- diag(rep.int(1, p))
-  } else {
-    stopifnot(is.matrix(v))
-    if(nrow(v) != ncol(v)) stop("v should be a square matrix")
-    stopifnot(ncol(x) == nrow(v))
   }
   z <- .C(SP_Cbiform,
           x=as.double(tx),

@@ -36,20 +36,28 @@
   and \eqn{y_i}{y[i,]} is the \code{i}-th row of \code{y}
   (after removing any rows containing \code{NA} or other non-finite
   values).
-  If \code{w} is missing, the weights will be taken as 1.
+  If \code{w} is missing or \code{NULL}, the weights will be taken as 1.
   The result is a \eqn{p \times q}{p * q} matrix where
   \code{p = ncol(x)} and \code{q = ncol(y)}.
   
   The command \code{quadform} evaluates the quadratic form, defined by
   the matrix \code{v}, for each of the row vectors of \code{x}:
- \deqn{ 
-   y_i = x_i V x_i^\top
+  \deqn{ 
+    y_i = x_i V x_i^\top
   }{
     y[i] = x[i,] \%*\% v \%*\% t(x[i,])
   }
   The result \code{y} is a numeric vector of length \code{n} where
   \code{n = nrow(x)}. If \code{x[i,]} contains \code{NA} or
   other non-finite values, then \code{y[i] = NA}.
+  If \code{v} is missing or \code{NULL},
+  it will be taken as the identity matrix, so
+  that the resulting values will be
+  \deqn{ 
+    y_i = x_i x_i^\top
+  }{
+    y[i] = x[i,] \%*\% t(x[i,])
+  }
 
   The command \code{bilinearform} evaluates the more general bilinear
   form defined by the matrix \code{v}. Here \code{x} and \code{y} must
@@ -63,6 +71,14 @@
   The result \code{z} is a numeric vector of length \code{n} where
   \code{n = nrow(x)}. If \code{x[i,]} or \code{y[i,]} contains \code{NA} or
   other non-finite values, then \code{z[i] = NA}.
+  If \code{v} is missing or \code{NULL},
+  it will be taken as the identity matrix, so
+  that the resulting values will be
+  \deqn{ 
+    z_i = x_i y_i^\top
+  }{
+    z[i] = x[i,] \%*\% t(y[i,])
+  }
 }
 \examples{
   x <- matrix(1:12, 4, 3)

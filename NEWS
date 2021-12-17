@@ -1,9 +1,32 @@
 
-        CHANGES IN spatstat.sparse VERSION 2.0-0.002
+        CHANGES IN spatstat.sparse VERSION 2.1-0
 
 OVERVIEW
 
-    o Minor tweaks to package information.
+    o Join two sparse arrays.
+    
+    o Minor improvements and bug fixes.
+
+NEW FUNCTIONS
+
+    o bind.sparse3Darray
+    Join two sparse three-dimensional arrays along a specified dimension
+    (analogously to 'rbind', 'cbind' or 'abind') to make another
+    sparse three-dimensional array.
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o quadform
+    Argument 'v=NULL' is now accepted, and interpreted as the identity matrix.
+
+    o bilinearform
+    Argument 'v=NULL' is now accepted, and interpreted as the identity matrix.
+
+BUG FIXES
+
+    o quadform
+    Crashed if 'v' was missing.
+    Fixed.
 
         CHANGES IN spatstat.sparse VERSION 2.0-0
 

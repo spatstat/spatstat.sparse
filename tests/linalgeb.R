@@ -8,15 +8,29 @@ ALWAYS <- FULLTEST <- TRUE
 ##
 ## checks validity of linear algebra code
 ##
-##  $Revision: 1.11 $ $Date: 2020/05/11 01:38:45 $
+##  $Revision: 1.12 $ $Date: 2021/12/17 00:32:32 $
 ##
 
 local({
   p <- 3
   n <- 4
   k <- 2
-  
+
+  ## correctness of 'quadform'
   x <- matrix(1:(n*p), n, p)
+  v <- matrix(runif(p^2), p, p)
+  zW <- zU <- numeric(n)
+  for(i in 1:n) {
+    xi <- x[i,,drop=FALSE]
+    zW[i] <- xi %*% v %*% t(xi)
+    zU[i] <- xi %*% t(xi)
+  }
+  if(!all(zU == quadform(x)))
+    stop("quadform gives incorrect result in Unweighted case")
+  if(!all(zW == quadform(x,v)))
+    stop("quadform gives incorrect result in Weighted case")
+    
+  ## correctness of 'sumouter'
   w <- runif(n)
   y <- matrix(1:(2*n), n, k)
   zUS <- zWS <- matrix(0, p, p)
@@ -36,8 +50,11 @@ local({
   if(!identical(zWA, sumouter(x, w, y)))
     stop("sumouter gives incorrect result in Weighted Asymmetric case")
 
-  #' complex quadratic forms
+  #' complex quadratic forms - execute only
   dimnames(x) <- list(letters[1:nrow(x)], LETTERS[1:ncol(x)])
+  a <- quadform(x + 1i)
+  b <- quadform(x + 1i, v+1i)
+  d <- quadform(x     , v+1i)
   a <- sumouter(x + 1i)
   b <- sumouter(x + 1i, w + 1i)
   d <- sumouter(x + 1i, w + 1i, x - 1i)
@@ -45,20 +62,12 @@ local({
   #' NA values
   xna <- x; xna[1,1] <- NA
   wna <- w; w[2] <- NA
-  yna <- x; yna[2,2] <- NA
+  vna <- v; v[1,2] <- NA
+  o <- quadform(xna)
+  o <- quadform(xna, vna)
   o <- sumouter(xna)
   o <- sumouter(xna, w)
-  o <- sumouter(xna, w, yna)
   o <- sumouter(xna, wna)
-  o <- sumouter(xna, wna, yna)
-
-  #' repeat coverage of quadform, bilinearform
-  v <- diag(p)
-  a1 <- quadform(x, v)
-  a2 <- bilinearform(x, v, x)
-  if(max(abs(a1-a2)) > 0) { # Integers!
-    stop("Disagreement between quadform and bilinearform")
-  }
   
   #' sumsymouter
   x <- array(as.numeric(1:(p * n * n)), dim=c(p, n, n))
@@ -73,14 +82,9 @@ local({
     stop("sumsymouter gives incorrect result")
   #' cover code blocks
   o <- sumsymouter(x, distinct=FALSE)
-  o <- sumsymouter(x, w, distinct=FALSE)
   a <- sumsymouter(x + 1i)
   b <- sumsymouter(x + 1i, w + 1i)
-  if(require(Matrix)) {
-    o <- sumsymouter(x, as(w, "sparseMatrix"))
-    u <- sumsymouter(as.sparse3Darray(x))
-    u <- sumsymouter(as.sparse3Darray(x), w)
-  }
+  if(require(Matrix)) o <- sumsymouter(x, as(w, "sparseMatrix"))
   
   #' power of complex matrix
   M <- diag(c(4,-4))

@@ -74,7 +74,7 @@ sparse3Darray(i = integer(0), j = integer(0), k = integer(0),
   array will be combined into a single entry by summing the \code{x} values.
 }
 \value{
-  An object of class \code{"sparse3Dvector"}.
+  An object of class \code{"sparse3Darray"}.
 }
 \author{
   \spatstatAuthors.
