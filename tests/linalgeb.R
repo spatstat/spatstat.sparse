@@ -8,7 +8,7 @@ ALWAYS <- FULLTEST <- TRUE
 ##
 ## checks validity of linear algebra code
 ##
-##  $Revision: 1.12 $ $Date: 2021/12/17 00:32:32 $
+##  $Revision: 1.13 $ $Date: 2022/04/18 03:16:26 $
 ##
 
 local({
@@ -85,14 +85,32 @@ local({
   a <- sumsymouter(x + 1i)
   b <- sumsymouter(x + 1i, w + 1i)
   if(require(Matrix)) o <- sumsymouter(x, as(w, "sparseMatrix"))
-  
-  #' power of complex matrix
+
+  #' matrixpower, matrixsqrt, matrixinvsqrt
+  checkit <- function(A, B=diag(nrow(A)), what) {
+    discrep <- max(abs(A-B))
+    if(discrep > sqrt(.Machine$double.eps))
+      stop(paste("large discrepancy", discrep, "in", what), call.=FALSE)
+    return(discrep)
+  }
+  #' (a) power of matrix is complex
   M <- diag(c(4,-4))
   dimnames(M) <- list(letters[1:2], letters[1:2])
   V <- matrixsqrt(M)
-  V <- matrixinvsqrt(M)
-  V <- matrixpower(M, 1/2)
-  U <- matrixsqrt(abs(M), complexOK=FALSE)
+  U <- matrixinvsqrt(M)
+  V2 <- matrixpower(M, 1/2)
+  checkit(V %*% V, M, "square of matrixsqrt")
+  checkit(V %*% U, what="matrixsqrt * matrixinvsqrt")
+  checkit(V2 %*% V2, M, "square of matrixpower(1/2)")
+  W <- matrixsqrt(abs(M), complexOK=FALSE)
+  #' (b) power of asymmetric complex matrix
+  Z <- matrix(c(1+1i, 2+1i, 2+3i, 5+5i), 2, 2)
+  V <- matrixsqrt(Z)
+  U <- matrixinvsqrt(Z)
+  V2 <- matrixpower(Z, 1/2)
+  checkit(V %*% V, Z, "square of matrixsqrt (complex)")
+  checkit(V %*% U, what="matrixsqrt * matrixinvsqrt (complex)")
+  checkit(V2 %*% V2, Z, "square of matrixpower(1/2) (complex)")
 
   #' infrastructure
   A <- matrix(1:12, 3, 4)
