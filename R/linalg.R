@@ -25,7 +25,7 @@ sumouter <- function(x, w=NULL, y=x) {
       stopifnot(length(w) == nrow(x))
     } else {
       w <- as.numeric(w)
-      check.nvector(w, nrow(x), things="rows of x", naok=TRUE)
+      check.nvector(w, nrow(x), things="rows of x", naok=TRUE, vname="w")
     }
   }
     
