@@ -1,8 +1,18 @@
 %% macro definitions for spatstat man pages
+%% Authors
 \newcommand{\adrian}{Adrian Baddeley \email{Adrian.Baddeley@curtin.edu.au}}
 \newcommand{\rolf}{Rolf Turner \email{r.turner@auckland.ac.nz}}
 \newcommand{\ege}{Ege Rubak \email{rubak@math.aau.dk}}
 \newcommand{\spatstatAuthors}{\adrian, \rolf and \ege}
+%% Contributors with emails
+\newcommand{\pavel}{Pavel Grabarnik \email{pavel.grabar@issp.serpukhov.su}}
+\newcommand{\dominic}{Dominic Schuhmacher \email{dominic.schuhmacher@mathematik.uni-goettingen.de}, URL \code{http://dominic.schuhmacher.name/}}
+\newcommand{\wei}{Ang Qi Wei \email{aqw07398@hotmail.com}}
+\newcommand{\colette}{Marie-Colette van Lieshout \email{Marie-Colette.van.Lieshout@cwi.nl}}
+\newcommand{\rasmus}{Rasmus Plenge Waagepetersen \email{rw@math.auc.dk}}
+\newcommand{\abdollah}{Abdollah Jalilian \email{jalilian@razi.ac.ir}}
+\newcommand{\ottmar}{Ottmar Cronie \email{ottmar@chalmers.se}}
+\newcommand{\stephenEglen}{Stephen Eglen \email{S.J.Eglen@damtp.cam.ac.uk}}
 % Names with accents
 \newcommand{\Bogsted}{\ifelse{latex}{\out{B\o gsted}}{Bogsted}}
 \newcommand{\Cramer}{\ifelse{latex}{\out{Cram\'er}}{Cramer}}
@@ -19,6 +29,10 @@
 \newcommand{\Dominguez}{\ifelse{latex}{\out{Dom\'{\i}nguez}}{Dominguez}}
 \newcommand{\Rodriguez}{\ifelse{latex}{\out{Rodr\'{\i}guez}}{Rodriguez}}
 %% List of all Gibbs interactions 
-\newcommand{\GibbsInteractionsList}{\code{\link[spatstat.core]{AreaInter}}, \code{\link[spatstat.core]{BadGey}}, \code{\link[spatstat.core]{Concom}}, \code{\link[spatstat.core]{DiggleGatesStibbard}}, \code{\link[spatstat.core]{DiggleGratton}}, \code{\link[spatstat.core]{Fiksel}}, \code{\link[spatstat.core]{Geyer}}, \code{\link[spatstat.core]{Hardcore}}, \code{\link[spatstat.core]{HierHard}}, \code{\link[spatstat.core]{HierStrauss}}, \code{\link[spatstat.core]{HierStraussHard}}, \code{\link[spatstat.core]{Hybrid}}, \code{\link[spatstat.core]{LennardJones}}, \code{\link[spatstat.core]{MultiHard}}, \code{\link[spatstat.core]{MultiStrauss}}, \code{\link[spatstat.core]{MultiStraussHard}}, \code{\link[spatstat.core]{OrdThresh}}, \code{\link[spatstat.core]{Ord}}, \code{\link[spatstat.core]{Pairwise}}, \code{\link[spatstat.core]{PairPiece}}, \code{\link[spatstat.core]{Penttinen}}, \code{\link[spatstat.core]{Poisson}}, \code{\link[spatstat.core]{Saturated}}, \code{\link[spatstat.core]{SatPiece}}, \code{\link[spatstat.core]{Softcore}}, \code{\link[spatstat.core]{Strauss}}, \code{\link[spatstat.core]{StraussHard}} and \code{\link[spatstat.core]{Triplets}}}
+\newcommand{\GibbsInteractionsList}{\code{\link[MPKG]{AreaInter}}, \code{\link[MPKG]{BadGey}}, \code{\link[MPKG]{Concom}}, \code{\link[MPKG]{DiggleGatesStibbard}}, \code{\link[MPKG]{DiggleGratton}}, \code{\link[MPKG]{Fiksel}}, \code{\link[MPKG]{Geyer}}, \code{\link[MPKG]{Hardcore}}, \code{\link[MPKG]{HierHard}}, \code{\link[MPKG]{HierStrauss}}, \code{\link[MPKG]{HierStraussHard}}, \code{\link[MPKG]{Hybrid}}, \code{\link[MPKG]{LennardJones}}, \code{\link[MPKG]{MultiHard}}, \code{\link[MPKG]{MultiStrauss}}, \code{\link[MPKG]{MultiStraussHard}}, \code{\link[MPKG]{OrdThresh}}, \code{\link[MPKG]{Ord}}, \code{\link[MPKG]{Pairwise}}, \code{\link[MPKG]{PairPiece}}, \code{\link[MPKG]{Penttinen}}, \code{\link[MPKG]{Poisson}}, \code{\link[MPKG]{Saturated}}, \code{\link[MPKG]{SatPiece}}, \code{\link[MPKG]{Softcore}}, \code{\link[MPKG]{Strauss}}, \code{\link[MPKG]{StraussHard}} and \code{\link[MPKG]{Triplets}}}
 %% List of interactions recognised by RMH code
-\newcommand{\rmhInteractionsList}{\code{\link[spatstat.core]{AreaInter}}, \code{\link[spatstat.core]{BadGey}}, \code{\link[spatstat.core]{DiggleGatesStibbard}}, \code{\link[spatstat.core]{DiggleGratton}}, \code{\link[spatstat.core]{Fiksel}}, \code{\link[spatstat.core]{Geyer}}, \code{\link[spatstat.core]{Hardcore}}, \code{\link[spatstat.core]{Hybrid}}, \code{\link[spatstat.core]{LennardJones}}, \code{\link[spatstat.core]{MultiStrauss}}, \code{\link[spatstat.core]{MultiStraussHard}}, \code{\link[spatstat.core]{PairPiece}}, \code{\link[spatstat.core]{Penttinen}}, \code{\link[spatstat.core]{Poisson}}, \code{\link[spatstat.core]{Softcore}}, \code{\link[spatstat.core]{Strauss}}, \code{\link[spatstat.core]{StraussHard}} and \code{\link[spatstat.core]{Triplets}}}
+\newcommand{\rmhInteractionsList}{\code{\link[MPKG]{AreaInter}}, \code{\link[MPKG]{BadGey}}, \code{\link[MPKG]{DiggleGatesStibbard}}, \code{\link[MPKG]{DiggleGratton}}, \code{\link[MPKG]{Fiksel}}, \code{\link[MPKG]{Geyer}}, \code{\link[MPKG]{Hardcore}}, \code{\link[MPKG]{Hybrid}}, \code{\link[MPKG]{LennardJones}}, \code{\link[MPKG]{MultiStrauss}}, \code{\link[MPKG]{MultiStraussHard}}, \code{\link[MPKG]{PairPiece}}, \code{\link[MPKG]{Penttinen}}, \code{\link[MPKG]{Poisson}}, \code{\link[MPKG]{Softcore}}, \code{\link[MPKG]{Strauss}}, \code{\link[MPKG]{StraussHard}} and \code{\link[MPKG]{Triplets}}}
+%% Frequent references
+\newcommand{\baddrubaturnbook}{Baddeley, A., Rubak, E. and Turner, R. (2015) \emph{Spatial Point Patterns: Methodology and Applications with R}. Chapman and Hall/CRC Press. }
+
+
