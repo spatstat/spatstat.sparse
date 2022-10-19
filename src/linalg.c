@@ -33,10 +33,12 @@
     y = sum[j] (x[,j] %o% x[,j])
 */
 
-void Csumouter(x, n, p, y) 
-  double *x;    /* p by n matrix */
-  int *n, *p;
-  double *y;    /* output matrix p by p, initialised to zero */
+void Csumouter(
+	       double *x,       /* p by n matrix */
+	       int *n,
+	       int *p,
+	       double *y       /* output matrix p by p, initialised to zero */
+)
 {
   int N, P;
   register int i, j, k, maxchunk;
@@ -65,12 +67,13 @@ void Csumouter(x, n, p, y)
     y = sum[j] (w[j] * x[,j] %o% x[,j])
 */
 
-void Cwsumouter(x, n, p, w, y) 
-  double *x;    /* p by n matrix */
-  int *n, *p;
-  double *w;    /* weight vector, length n */
-  double *y;    /* output matrix p by p, initialised to zero */
-{
+void Cwsumouter(
+  double *x,    /* p by n matrix */
+  int *n,
+  int *p,
+  double *w,    /* weight vector, length n */
+  double *y    /* output matrix p by p, initialised to zero */
+) {
   int N, P;
   register int i, j, k, maxchunk;
   register double wj, xij, wjxij, xkj;
@@ -100,11 +103,14 @@ void Cwsumouter(x, n, p, w, y)
     z = sum[j] (x[,j] %o% y[,j])
 */
 
-void Csum2outer(x, y, n, px, py, z) 
-   double *x, *y;    /* matrices (px by n) and (py by n) */
-   int *n, *px, *py;
-   double *z;    /* output matrix px by py, initialised to zero */
-{
+void Csum2outer(
+   double *x,   /* matrix (px by n) */
+   double *y,    /* matrix (py by n) */
+   int *n,
+   int *px,
+   int *py,
+   double *z    /* output matrix px by py, initialised to zero */
+) {
   int N, Px, Py;
   register int i, j, k, maxchunk;
   register double xij, ykj;
@@ -134,12 +140,15 @@ void Csum2outer(x, y, n, px, py, z)
     z = sum[j] (w[j] * x[,j] %o% y[,j])
 */
 
-void Cwsum2outer(x, y, n, px, py, w, z) 
-   double *x, *y;    /* matrices (px by n) and (py by n) */
-   int *n, *px, *py;
-   double *w;    /* weight vector, length n */
-   double *z;    /* output matrix px by py, initialised to zero */
-{
+void Cwsum2outer(
+		 double *x,   /* matrix (px by n) */
+		 double *y,   /* matrix (py by n) */
+		 int *n,
+		 int *px,
+		 int *py,
+		 double *w,    /* weight vector, length n */
+		 double *z    /* output matrix px by py, initialised to zero */
+) {
   int N, Px, Py;
   register int i, j, k, maxchunk;
   register double wj, xij, wjxij, ykj;
@@ -172,12 +181,13 @@ void Cwsum2outer(x, y, n, px, py, w, z)
     y[j] = x[,j] %*% v %*% t(x[,j])
 */
 
-void Cquadform(x, n, p, v, y) 
-  double *x;    /* p by n matrix */
-  int *n, *p;
-  double *v;    /* p by p matrix */
-  double *y;    /* output vector, length n */
-{
+void Cquadform(
+  double *x,    /* p by n matrix */
+  int *n,
+  int *p,
+  double *v,    /* p by p matrix */
+  double *y    /* output vector, length n */
+) {
   int N, P;
   register int i, j, k, maxchunk;
   register double xij, xkj, vik, yj;
@@ -207,12 +217,14 @@ void Cquadform(x, n, p, v, y)
     z[j] = x[,j] %*% v %*% t(y[,j])
 */
 
-void Cbiform(x, y, n, p, v, z) 
-     double *x, *y;    /* p by n matrices */
-     int *n, *p;
-     double *v;    /* p by p matrix */
-     double *z;    /* output vector, length n */
-{
+void Cbiform(
+	     double *x,
+	     double *y,    /* p by n matrices */
+	     int *n,
+	     int *p,
+	     double *v,    /* p by p matrix */
+	     double *z    /* output vector, length n */
+) {
   int N, P;
   register int i, j, k, maxchunk;
   register double xij, vik, ykj, zj;

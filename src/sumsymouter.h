@@ -3,7 +3,7 @@
 
   Code template for some functions in linalg.c
 
-  $Revision: 1.4 $ $Date: 2018/12/18 02:43:11 $
+  $Revision: 1.5 $ $Date: 2022/10/19 08:10:29 $
 
   Copyright (C) Adrian Baddeley, Ege Rubak and Rolf Turner 2001-2018
   Licence: GNU Public Licence >= 2
@@ -14,18 +14,14 @@
 */
 
 void FNAME(
-  x, 
+  double *x,       /* p by n by n array */
 #ifdef WEIGHTED
-  w, 
+  double *w,       /* n by n matrix (symmetric) */
 #endif
-  p, n, y
+  int *p,
+  int *n,
+  double *y        /* output matrix p by p, initialised to zero */
 ) 
-  double *x;    /* p by n by n array */
-#ifdef WEIGHTED
-  double *w;    /*      n by n matrix (symmetric) */
-#endif
-  int *p, *n;
-  double *y;    /* output matrix p by p, initialised to zero */
 {
   int N, P;
   register int i, j, k, m, ijpos, jipos, maxchunk;

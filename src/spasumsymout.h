@@ -13,38 +13,37 @@
 
   WEIGHTS   (#ifdef) use weights 
 
-  $Revision: 1.7 $  $Date: 2020/05/04 08:41:24 $
+  $Revision: 1.11 $  $Date: 2022/10/19 08:16:51 $
 
   Copyright (C) Adrian Baddeley, Ege Rubak and Rolf Turner 2001-2018
   Licence: GNU Public Licence >= 2
 
  */
 
-void FNAME(m, n, 
-	   lenx, ix, jx, kx, x, 
-	   flip, 
-#ifdef WEIGHTS
-	   lenw, jw, kw, w,
-#endif
-	   y) 
-  int *m, *n;            /* dimensions of array m * n * n */
-  int *lenx;             /* number of nonzero entries in sparse array x */
-  int *ix, *jx, *kx;     /* indices of entries in sparse array x */
-  double *x;             /* values in sparse array x */
+void FNAME(
+	   int *m,       /* dimensions of array m * n * n */
+	   int *n, 
+	   int *lenx,     /* number of nonzero entries in sparse array x */
+	   int *ix,
+	   int *jx,
+	   int *kx,      /* indices of nonzero entries in x */
+	   double *x,    /* values of nonzero entries in x */
                          /* NB: ix, jx, kx are assumed to be
 			    sorted by order(j,k,i)
 			    i.e. in increasing order of j, 
 			    then k within j, 
 			    then i within (j,k) */
-  int *flip;             /* reordering of ix, jx, kx, x that would achieve
+	   int *flip,    /* reordering of ix, jx, kx, x that would achieve
 			    increasing order(k,j,i) */
 #ifdef WEIGHTS
-  int *lenw;             /* length of jw, kw */
-  int *jw, *kw;          /* indices of entries in sparse matrix w of weights */
+	   int *lenw,    /* number of nonzero entries in sparse matrix of weights */
+	   int *jw,
+	   int *kw,      /* indices of nonzero entries in w */
                          /* Assumed sorted by order (j,k) */
-  double *w;             /* values of weights w */
+	   double *w,    /* values of nonzero entries in w */
 #endif
-  double *y;             /* output: full m * m matrix */
+	   double *y             /* output: full m * m matrix */
+)
 {
   /* Compute the sum of outer(x[,j,k], x[,k,j]) for all j != k */
   int M,N,L, i,j,k,ii, l, ll, lstart, lend, t, tstart, tend, r;
