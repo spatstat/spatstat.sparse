@@ -6,7 +6,7 @@
 #'  Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #'  GNU Public Licence >= 2.0
 #' 
-#'  $Revision: 1.18 $  $Date: 2021/02/06 04:31:41 $
+#'  $Revision: 1.19 $  $Date: 2023/02/28 01:52:43 $
 #'
 
 #'  .............. completely generic ....................
@@ -255,7 +255,7 @@ check.anySparseVector <- function(v, npoints=NULL, fatal=TRUE, things="data poin
                                   naok=FALSE, warn=FALSE, vname, oneok=FALSE) {
   # vector, factor or sparse vector of values for each point/thing
   if(missing(vname))
-    vname <- sQuote(deparse(substitute(v)))
+    vname <- sQuote(short.deparse(substitute(v)))
   whinge <- NULL
   isVector <- is.atomic(v) && is.null(dim(v))
   isSparse <- inherits(v, "sparseVector")

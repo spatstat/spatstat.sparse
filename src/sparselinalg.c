@@ -6,7 +6,7 @@
 
   Counterpart of 'linalg.c' for sparse matrices/arrays
 
-  $Revision: 1.7 $  $Date: 2018/12/18 02:43:11 $
+  $Revision: 1.8 $  $Date: 2022/10/22 10:09:51 $
 
   Copyright (C) Adrian Baddeley, Ege Rubak and Rolf Turner 2001-2018
   Licence: GNU Public Licence >= 2
