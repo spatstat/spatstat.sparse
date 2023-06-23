@@ -6,7 +6,7 @@
 #' Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #' GNU Public Licence >= 2.0
 #'
-#' $Revision: 1.44 $  $Date: 2021/03/04 07:42:18 $
+#' $Revision: 1.45 $  $Date: 2023/06/23 02:26:26 $
 #'
 
 sparse3Darray <- function(i=integer(0), j=integer(0), k=integer(0),
@@ -911,7 +911,7 @@ EntriesToSparse <- function(df, dims) {
       first <- !dup
       newi <- cumsum(first)
       newx <- as(tapply(df$x, newi, sum), typeof(df$x))
-      df <- data.frame(i=newi[first], x=newx)
+      df <- data.frame(i=df$i[first], x=newx)
     }
     result <- with(df, sparseVector(i=i, x=x, length=dims))
   } else if(nd == 2) {

@@ -1,4 +1,21 @@
 
+        CHANGES IN spatstat.sparse VERSION 3.0-1.001
+
+OVERVIEW
+
+    o We thank Joey Arthur for contributions.
+    
+    o Bug fix.
+
+BUG FIXES
+
+    o marginSumsSparse
+    If the result of marginSumsSparse was a one-dimensional sparse vector,
+    the entries were incorrectly rearranged so that the non-zero entries
+    were all at the beginning of the vector.
+    [Spotted by Joey Arthur.]
+    Fixed.
+
         CHANGES IN spatstat.sparse VERSION 3.0-1
 
 OVERVIEW

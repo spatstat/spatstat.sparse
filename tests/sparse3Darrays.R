@@ -5,7 +5,7 @@ require(spatstat.sparse)
 ALWAYS <- FULLTEST <- TRUE
 #'    tests/sparse3Darrays.R
 #'  Basic tests of code in sparse3Darray.R and sparsecommon.R
-#'  $Revision: 1.28 $ $Date: 2021/03/07 07:39:44 $
+#'  $Revision: 1.32 $ $Date: 2023/06/23 02:34:57 $
 
 if(!exists("ALWAYS")) ALWAYS <- TRUE
 if(!exists("FULLTEST")) FULLTEST <- ALWAYS
@@ -46,7 +46,7 @@ local({
   A11 <- A[,1,1]
   AA11 <- as.sparse3Darray(A11)
   #' NULL with warning
-  as.sparse3Darray(list())
+  suppressWarnings(Niets <- as.sparse3Darray(list()))
 
   #' 
   dim(AA) <- dim(AA) + 1
@@ -54,6 +54,11 @@ local({
   I1 <- SparseIndices(A1)
   I11 <- SparseIndices(A11)
   
+  BB <- evalSparse3Dentrywise(AA + AA/2)
+
+  MM <- bind.sparse3Darray(M, M, along=1)
+  MM <- bind.sparse3Darray(M, M, along=2)
+
   if(require(Matrix)) {
     #' sparse matrices from Matrix package
     A1 <- as(A1, "sparseMatrix")
@@ -75,19 +80,33 @@ local({
     bb <- EntriesToSparse(df, 7)
     cc <- EntriesToSparse(df, c(7, 4))
     dd <- EntriesToSparse(df, c(7, 4, 3))
+
     #' duplicated entries
     dfdup <- df[c(1:3, 2), ]
     aa <- EntriesToSparse(dfdup, NULL)
     bb <- EntriesToSparse(dfdup, 7)
     cc <- EntriesToSparse(dfdup, c(7, 4))
     dd <- EntriesToSparse(dfdup, c(7, 4, 3))
+    
+    #' example from Joey Arthur (bug in EntriesToSparse)
+    joey <- as.sparse3Darray(
+      list(
+        as(matrix(rep(1, 9), 3, 3), 'dgCMatrix'),
+        as(matrix(rep(0, 9), 3, 3), 'dgCMatrix'),
+        as(matrix(rep(2, 9), 3, 3), 'dgCMatrix')
+      )
+    )
+    answer <- marginSumsSparse(joey, 3)
+    rightanswer <- marginSums(as.array(joey), 3) # [1] 9 0 18
+    if(!all(as.vector(answer) == rightanswer))  {
+      cat("Result of marginSumsSparse:\n")
+      print(answer)
+      cat("Right answer:\n")
+      print(rightanswer)
+      stop("Incorrect answer from marginSumsSparse")
+    }
+
   }
-
-  BB <- evalSparse3Dentrywise(AA + AA/2)
-
-  MM <- bind.sparse3Darray(M, M, along=1)
-  MM <- bind.sparse3Darray(M, M, along=2)
-
 })
 
     
@@ -333,3 +352,4 @@ local({
 })
 
 }
+
