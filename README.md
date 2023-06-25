@@ -15,15 +15,33 @@ see the [CRAN page](https://CRAN.R-project.org/package=spatstat.sparse).
 
 ### Functionality provided
 
-The `spatstat.sparse` package is a small subset of code from
-original `spatstat` package, which has been documented and improved.
-It provides:
+The `spatstat.sparse` package 
 
-  - a class of sparse three-dimensional arrays
-    and standard operations on them.
+  - defines a class of sparse three-dimensional arrays
+    and supports standard operations on them.
 
-  - utility functions for matrix computations
+  - provides utility functions for matrix computations
     that are common in statistics,
     such as quadratic forms.
 
-  - utilities for handling different types of array indices.
+It supports
+
+   - creation of sparse arrays from raw data (numeric, integer, logical, or complex values)
+   
+   - conversion to/from other data types
+   
+   - array indexing, extraction of entries, assignment of new values
+   
+   - arithmetic and logical operations
+   
+   - tensor operations (generalising matrix multiplication)
+   
+   - permutation of array dimensions
+   
+   - binding of several arrays into a single array
+   
+   - printing of sparse arrays.
+
+   - linear algebra operations including calculation of quadratic forms,
+     bilinear forms, fractional powers of a matrix.
+
