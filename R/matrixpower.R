@@ -4,7 +4,7 @@
 #'   Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2022
 #'   GNU Public Licence >= 2.0
 #'
-#'   $Revision: 1.8 $  $Date: 2022/04/18 03:17:30 $
+#'   $Revision: 1.9 $  $Date: 2024/06/09 00:01:09 $
 #' 
 
 matrixsqrt <- function(x, complexOK=TRUE) {
@@ -13,7 +13,7 @@ matrixsqrt <- function(x, complexOK=TRUE) {
     stop("x must be a matrix")
   if(!is.matrix(x))
     x <- as.matrix(x)
-  check.nmatrix(x) ## requires square matrix
+  check.nmatrix(x, mname="x") ## requires square matrix
   if(missing(complexOK) && is.complex(x)) complexOK <- TRUE
   if(!complexOK) stopifnot(is.numeric(x)) else
                  stopifnot(is.numeric(x) || is.complex(x))
@@ -45,7 +45,7 @@ matrixinvsqrt <- function(x, complexOK=TRUE) {
     stop("x must be a matrix")
   if(!is.matrix(x))
     x <- as.matrix(x)
-  check.nmatrix(x) ## requires square matrix
+  check.nmatrix(x, mname="x") ## requires square matrix
   if(missing(complexOK) && is.complex(x)) complexOK <- TRUE
   if(!complexOK) stopifnot(is.numeric(x)) else
                  stopifnot(is.numeric(x) || is.complex(x))
@@ -79,7 +79,7 @@ matrixpower <- function(x, power, complexOK=TRUE) {
     stop("x must be a matrix")
   if(!is.matrix(x))
     x <- as.matrix(x)
-  check.nmatrix(x) ## requires square matrix
+  check.nmatrix(x, mname="x") ## requires square matrix
   if(power == 0) {
     ## power = 0 yields identity matrix even if x is singular
     y <- diag(nrow(x))

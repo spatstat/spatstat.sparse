@@ -1,7 +1,8 @@
 README.md
 ChangeLog.txt
-.git
-.gitignore
+\.git$
+\.github$
+\.gitignore$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
