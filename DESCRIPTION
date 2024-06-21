@@ -1,6 +1,6 @@
 Package: spatstat.sparse
-Version: 3.0-3.003
-Date: 2024-06-18
+Version: 3.1-0
+Date: 2024-06-21
 Title: Sparse Three-Dimensional Arrays and Linear Algebra Utilities
 Authors@R: c(person("Adrian", "Baddeley", 
                     role = c("aut", "cre", "cph"),
@@ -16,7 +16,7 @@ Authors@R: c(person("Adrian", "Baddeley",
 		    comment=c(ORCID="0000-0002-6675-533X")))
 Maintainer: Adrian Baddeley <Adrian.Baddeley@curtin.edu.au>
 Depends: R (>= 3.5.0), stats, utils, methods, Matrix, abind, tensor
-Imports: spatstat.utils (>= 3.0-2)
+Imports: spatstat.utils (>= 3.0-5)
 Description: Defines sparse three-dimensional arrays
 	     and supports standard operations on them.
 	     The package also includes utility functions for
