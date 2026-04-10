@@ -29,6 +29,8 @@ static const R_CMethodDef CEntries[] = {
     {"CwsumDsymouter",   (DL_FUNC) &CwsumDsymouter,    5},
     {"Cwsumouter",       (DL_FUNC) &Cwsumouter,        5},
     {"Cwsumsymouter",    (DL_FUNC) &Cwsumsymouter,     5},
+    {"rMCspMF",          (DL_FUNC) &rMCspMF,           9},
+    {"rMCspMH",          (DL_FUNC) &rMCspMH,           9},
     {NULL, NULL, 0}
 };
 

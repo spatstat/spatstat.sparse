@@ -1,4 +1,16 @@
 
+        CHANGES IN spatstat.sparse VERSION 3.1-0.001
+
+OVERVIEW
+
+    o Simulate a Markov chain with sparse transition matrix.
+
+NEW FUNCTIONS
+
+    o runSparseMarkovChain
+    Generate simulated realisations of a Markov chain
+    using a sparse matrix representation of the transition probability matrix.
+
         CHANGES IN spatstat.sparse VERSION 3.1-0
 
 OVERVIEW

@@ -28,6 +28,8 @@ void CspaSumSymOut(int *, int *, int *, int *, int *, int *, double *, int *, do
 void CspaWtSumSymOut(int *, int *, int *, int *, int *, int *, double *, int *, int *, int *, int *, double *, double *); 
 void CDspaSumSymOut(int *, int *, int *, int *, int *, int *, double *, int *, double *); 
 void CDspaWtSumSymOut(int *, int *, int *, int *, int *, int *, double *, int *, int *, int *, int *, double *, double *);
+void rMCspMH(int *, int *, double *, int *, int *, int *, int *, int *, int *); 
+void rMCspMF(int *, int *, double *, int *, int *, int *, int *, int *, int *);
 /*
 
              Functions invoked by .Call

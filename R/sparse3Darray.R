@@ -6,7 +6,7 @@
 #' Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #' GNU Public Licence >= 2.0
 #'
-#' $Revision: 1.45 $  $Date: 2023/06/23 02:26:26 $
+#' $Revision: 1.46 $  $Date: 2026/01/21 06:26:39 $
 #'
 
 sparse3Darray <- function(i=integer(0), j=integer(0), k=integer(0),
@@ -203,7 +203,7 @@ aperm.sparse3Darray <- function(a, perm=NULL, resize=TRUE, ...) {
     a$dim <- a$dim[perm]
     if(length(a$dimnames)==3) a$dimnames <- a$dimnames[perm]
   }
-  class(a) <- c("sparse3Darray", class(a))
+  class(a) <- unique(c("sparse3Darray", class(a)))
   return(a)
 }
 
