@@ -19,7 +19,7 @@
 
   The indices in 'colindex' and 'rowstart' are zero-based.
 
-  $Revision: 1.3 $ $Date: 2026/04/10 03:05:20 $
+  $Revision: 1.4 $ $Date: 2026/04/10 08:04:44 $
 
   Copyright (c) Adrian Baddeley 2026
   GNU Public Licence (>= 2.0)
@@ -29,7 +29,6 @@
 #include <R.h>
 #include <R_ext/Utils.h>
 #include <math.h>
-
 
 /* rMCspMF
    Run 'M'ultiple independent realisations
@@ -66,7 +65,7 @@ void rMCspMF(
     /* initialise position */
     currentpos = startpos[ipoint];
     /* run chain */
-    for(istep = 0; istep <- Nsteps; istep++) {
+    for(istep = 0; istep < Nsteps; istep++) {
       /* transition probabilities from current position */
       thisrowstart = rowstart[currentpos];
       nextrowstart = ((currentpos+1) < Nrows) ? rowstart[currentpos+1] : Nsparse;
