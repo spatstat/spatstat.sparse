@@ -7,19 +7,23 @@
   rMCspMF  - return final state only
   rMCspMH  - return history of chain
 
-  Sparse matrix is required to be in row-major sparse form
-  (class 'dgRmatrix') which can be achieved using 'as(, "RsparseMatrix")'
-  Information passed to the C code:
+  These C functions are called from 'sparseMarkov.R'
+
+  The transition matrix M is required to be in row-major sparse form
+  (virtual class 'RsparseMatrix' which embraces 'dgRMatrix' and 'dtRMatrix')
+  Matrices can be converted to this form using 'as(M, "RsparseMatrix")'
+
+  Data passed to the C code from the sparse matrix M:
   
-  nrows     Number of rows (and columns) of matrix         dim(M)[1]
-  nsparse   Number of nonzero entries in matrix            length(M@x)
-  probval   Vector of nonzero entries                      M@x
-  colindex  Vector of column indices for nonzero entries   M@j
-  rowstart  Start position in M@x, M@j of each row         M@p
+  nrows     Number of rows (and columns) of matrix            dim(M)[1]
+  nsparse   Number of nonzero entries in matrix               length(M@x)
+  probval   Vector of nonzero entries                         M@x
+  colindex  Vector of column indices for nonzero entries      M@j
+  rowstart  Start position in M@x, M@j of each row of matrix  M@p
 
   The indices in 'colindex' and 'rowstart' are zero-based.
 
-  $Revision: 1.4 $ $Date: 2026/04/10 08:04:44 $
+  $Revision: 1.8 $ $Date: 2026/04/11 09:54:48 $
 
   Copyright (c) Adrian Baddeley 2026
   GNU Public Licence (>= 2.0)
@@ -50,9 +54,12 @@ void rMCspMF(
 	      int *nsteps,
 	      /* output: final state for each point */
 	      int *endpos) {
-  register int istep, ipoint, currentpos, thisrowstart, nextrowstart, j, k;
+  register int steps, points, entries, currentpos, j;
+  int thisrowstart, nextrowstart, thisrowlength;
   register double u;
   int Nrows, Nsparse, Npoints, Nsteps;
+  register int *sp, *ep, *cp;
+  register double *pp;
 
   Nrows   = *nrows;
   Nsparse = *nsparse;
@@ -60,31 +67,46 @@ void rMCspMF(
   Nsteps  = *nsteps;
 
   GetRNGstate();
+
+  /* initialise pointers */
+  sp = startpos;
+  ep = endpos;
   
-  for(ipoint = 0; ipoint < Npoints; ipoint++) {
+  for(points = Npoints; points > 0; --points, ++sp, ++ep) {
     /* initialise position */
-    currentpos = startpos[ipoint];
+    currentpos = *sp;
     /* run chain */
-    for(istep = 0; istep < Nsteps; istep++) {
-      /* transition probabilities from current position */
+    for(steps = Nsteps; steps > 0; --steps) {
+      /* nonzero transition probabilities from current position */
       thisrowstart = rowstart[currentpos];
       nextrowstart = ((currentpos+1) < Nrows) ? rowstart[currentpos+1] : Nsparse;
+      thisrowlength = nextrowstart - thisrowstart;
       /* random number */
       u = unif_rand();
+      /* pointers into probval[] and colindex[] for this row */
+      pp = probval  + thisrowstart;
+      cp = colindex + thisrowstart;
+      /* loop over nonzero entries in current row */
       j = -1;
-      for(k = thisrowstart; k < nextrowstart; k++) {
-	u -= probval[k];
+      for(entries = thisrowlength; entries > 0; --entries, pp++, cp++) {
+	u -= *pp;
 	if(u <= 0.0) {
 	  /* jump */
-	  j = colindex[k];
+	  j = *cp;
 	  break;
 	}
       }
-      if(j < 0) j = colindex[nextrowstart - 1];
+      if(j < 0) {
+	/* 
+	   Random number exceeded row sum of transition matrix.
+	   theoretically impossible -- can occur due to numerical error 
+	*/
+	j = colindex[nextrowstart - 1];
+      }
       currentpos = j;
     }
     /* save state */
-    endpos[ipoint] = currentpos;
+    *ep = currentpos;
   }
   
   PutRNGstate();
@@ -111,11 +133,13 @@ void rMCspMH(
 	      int *nsteps,
 	      /* output: history for each point ( (Nsteps + 1) * Npoints ) */
 	      int *history) {
-  register int istep, ipoint, currentpos, thisrowstart, nextrowstart, j, k;
+  register int steps, points, entries, currentpos, j;
+  int thisrowstart, nextrowstart, thisrowlength;
   register double u;
   int Nrows, Nsparse, Npoints, Nsteps, Nhistory;
-  int *histp;
-
+  register int *sp, *cp, *histp;
+  register double *pp;
+  
   Nrows   = *nrows;
   Nsparse = *nsparse;
   Npoints = *npoints;
@@ -127,30 +151,43 @@ void rMCspMH(
 
   /* pointer to next entry in 'history' */
   histp = history;
+  /* pointer to initial state */
+  sp = startpos;
   
-  for(ipoint = 0; ipoint < Npoints; ipoint++) {
+  for(points = Npoints; points > 0; --points, ++sp) {
     /* initialise position */
-    currentpos = startpos[ipoint];
+    currentpos = *sp;
     /* save initial state */
     *histp = currentpos;
     ++histp;
-    /* run chain for point number 'ipoint' */
-    for(istep = 0; istep < Nsteps; istep++, histp++) {
-      /* transition probabilities from current position */
+    /* run chain */
+    for(steps = Nsteps; steps > 0; --steps, ++histp) {
+      /* nonzero transition probabilities from current position */
       thisrowstart = rowstart[currentpos];
       nextrowstart = ((currentpos+1) < Nrows) ? rowstart[currentpos+1] : Nsparse;
+      thisrowlength = nextrowstart - thisrowstart;
       /* random number */
       u = unif_rand();
+      /* pointers into probval[] and colindex[] for this row */
+      pp = probval  + thisrowstart;
+      cp = colindex + thisrowstart;
+      /* loop over nonzero entries in current row */
       j = -1;
-      for(k = thisrowstart; k < nextrowstart; k++) {
-	u -= probval[k];
+      for(entries = thisrowlength; entries > 0; --entries, pp++, cp++) {
+	u -= *pp;
 	if(u <= 0.0) {
 	  /* jump */
-	  j = colindex[k];
+	  j = *cp;
 	  break;
 	}
       }
-      if(j < 0) j = colindex[nextrowstart - 1];
+      if(j < 0) {
+	/* 
+	   Random number exceeded row sum of transition matrix.
+	   theoretically impossible -- can occur due to numerical error 
+	*/
+	j = colindex[nextrowstart - 1];
+      }
       currentpos = j;
       /* save state */
       *histp = currentpos;
