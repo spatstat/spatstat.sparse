@@ -73,13 +73,19 @@
   \adrian
 }
 \examples{
-  M <- diag(5)
-  M[1,3] <- 1
-  M[2, 2:3] <- 1
-  M[3, 2:4] <- 1
-  M[4, 1:5] <- 1
-  M[5, 1:5] <- 1
+  M <- matrix(c(1, 0, 1, 0, 0,
+                0, 1, 1, 0, 0,
+                0, 1, 1, 1, 0,
+                1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1),
+              5, 5) 
   P <- M/rowSums(M)
   runSparseMarkovChain(P, 2, 20)
+
+  ## random walk on { 1, ..., 1000 }
+  G <- diag(1000)
+  G[abs(row(G) - col(G)) == 1] <- 1
+  H <- G/rowSums(G)
+  plot(runSparseMarkovChain(H, 500, 1e4), type="l")
 }
 \keyword{datagen}
