@@ -4,7 +4,7 @@
 #'  discrete-time finite-state Markov chain simulation
 #'  using a sparse matrix representation of the transition matrix
 #'
-#'  $Revision: 1.4 $ $Date: 2026/04/10 03:58:24 $
+#'  $Revision: 1.5 $ $Date: 2026/04/11 04:25:09 $
 #'
 #'  Copyright (c) Adrian Baddeley 2026
 #'  GNU Public Licence (>= 2.0)
@@ -15,7 +15,7 @@ runSparseMarkovChain <- function(P, x0, nsteps, ...,
                                  check=TRUE,
                                  method=c("C", "interpreted")) {
   P <- as(P, "RsparseMatrix")
-  if(!inherits(P, "dgRMatrix"))
+  if(!inherits(P, "RsparseMatrix"))
     stop("Unable to convert P to a sparse matrix in row-major form",
          call.=FALSE)
   method <- match.arg(method)
@@ -25,6 +25,8 @@ runSparseMarkovChain <- function(P, x0, nsteps, ...,
   nx <- length(x0)
   if(check) {
     ra <- range(P)
+    if(!all(is.finite(ra)))
+      stop("P contains infinite, NA or NaN entries", call.=FALSE)
     if(ra[1L] < 0) stop("P contains negative entries", call.=FALSE)
     if(ra[2L] > 1) stop("P contains entries greater than 1", call.=FALSE)
     rs <- range(rowSums(P))
