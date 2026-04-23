@@ -23,7 +23,7 @@
 
   The indices in 'colindex' and 'rowstart' are zero-based.
 
-  $Revision: 1.8 $ $Date: 2026/04/11 09:54:48 $
+  $Revision: 1.9 $ $Date: 2026/04/15 03:49:20 $
 
   Copyright (c) Adrian Baddeley 2026
   GNU Public Licence (>= 2.0)
@@ -35,9 +35,9 @@
 #include <math.h>
 
 /* rMCspMF
-   Run 'M'ultiple independent realisations
-   from different starting points, 
-   and return only the 'F'inal states 
+   'r'un 'M'arkov 'C'hain for 'sp'arse matrix
+   'M'ultiple independent realisations from different starting points, 
+   return only the 'F'inal states 
 */
 
 void rMCspMF(
@@ -114,9 +114,9 @@ void rMCspMF(
 
 	      
 /* rMCspMH
-   Run 'M'ultiple independent realisations
-   from different starting points, 
-   and return the 'H'istory of each point.
+   'r'un 'M'arkov 'C'hain for 'sp'arse matrix
+   'M'ultiple independent realisations from different starting points
+   return the 'H'istory of each point.
 */
 
 void rMCspMH(
@@ -197,4 +197,3 @@ void rMCspMH(
   PutRNGstate();
 }
 
-	      

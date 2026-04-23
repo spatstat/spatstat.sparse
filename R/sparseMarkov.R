@@ -36,6 +36,11 @@ runSparseMarkovChain <- function(P, x0, nsteps, ...,
     if(rx[1L] < 1 || rx[2L] > nrow(P))
       stop("Some indices in x0 are out of range", call.=FALSE)
   }
+
+  nentries <- length(P@x)
+  if(nentries > .Machine$integer.max || is.na(as.integer(nentries)))
+    stop("Sorry, long vectors are not yet supported", call.=FALSE)
+  
   ## >>>>>>>>>>>>  run chain  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   switch(method,
          interpreted = {
