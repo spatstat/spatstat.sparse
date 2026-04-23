@@ -112,3 +112,26 @@ matrixpower <- function(x, power, complexOK=TRUE) {
     dimnames(y) <- rev(dn)
   return(y)
 }
+
+symmatrix <- function(x, from=c("lower", "upper"), diag=TRUE) {
+  from <- match.arg(from)
+  x <- as.vector(x)
+  n <- length(x)
+  if(diag) {
+    m <- (sqrt(8*n+1)-1)/2
+    E <- m^2 + m - 2*n
+  } else {
+    m <- (sqrt(8*n+1)+1)/2
+    E <- m^2 - m - 2*n
+  }
+  if(E != 0)
+    stop("x has the wrong length for a triangular subset", call.=FALSE)
+  M <- matrix(, m, m)
+  A <- switch(from,
+              lower = lower.tri(M, diag=diag),
+              upper = upper.tri(M, diag=diag))
+  M[  A ] <- x
+  M[ !A ] <- t(M)[ !A ]
+  return(M)
+}
+

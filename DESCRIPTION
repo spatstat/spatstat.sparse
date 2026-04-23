@@ -1,5 +1,5 @@
 Package: spatstat.sparse
-Version: 3.1-0.006
+Version: 3.1-0.007
 Date: 2026-04-23
 Title: Sparse Three-Dimensional Arrays and Linear Algebra Utilities
 Authors@R: c(person("Adrian", "Baddeley", 
