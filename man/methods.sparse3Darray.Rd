@@ -6,6 +6,7 @@
 \alias{dim<-.sparse3Darray}
 \alias{dimnames.sparse3Darray}
 \alias{dimnames<-.sparse3Darray}
+\alias{length.sparse3Darray}
 \alias{print.sparse3Darray}
 \title{
   Methods for Sparse Three-Dimensional Arrays
@@ -20,6 +21,7 @@
  \method{dim}{sparse3Darray}(x) <- value
  \method{dimnames}{sparse3Darray}(x)
  \method{dimnames}{sparse3Darray}(x) <- value
+ \method{length}{sparse3Darray}(x)
  \method{print}{sparse3Darray}(x, \dots)
 }
 \arguments{
@@ -40,8 +42,9 @@
   \code{\link[base]{dim<-}},
   \code{\link[base]{dimnames}},
   \code{\link[base]{dimnames<-}}
+  \code{\link[base]{length}}
   and \code{\link[base]{print}}
-  for the class \code{"sparse#Darray"} of sparse three-dimensional
+  for the class \code{"sparse3Darray"} of sparse three-dimensional
   arrays.
 
   For \code{dimnames(x) <- value}, the \code{value} should either be
@@ -52,7 +55,10 @@
   vector of length 3 giving the new dimensions of the array. Note that this
   operation does not change the array positions of the non-zero entries
   (unlike \code{dim(x) <- value} for a full array). An error occurs if
-  some of the non-zero entries would lie outside the new extent of the array.
+  some of the non-zero entries would lie outside the new extent of the
+  array.
+
+  The \code{length} of a sparse array is the product of its dimensions.
 }
 \value{
   \code{anyNA} returns a single logical value.
@@ -64,6 +70,8 @@
 
   \code{dim<-} and \code{dimnames<-} return a sparse 3D array.
 
+  \code{length} returns an integer.
+  
   \code{print} returns \code{NULL}, invisibly.
 }
 \author{

@@ -13,7 +13,7 @@
 
   WEIGHTS   (#ifdef) use weights 
 
-  $Revision: 1.11 $  $Date: 2022/10/19 08:16:51 $
+  $Revision: 1.12 $  $Date: 2026/04/24 05:36:26 $
 
   Copyright (C) Adrian Baddeley, Ege Rubak and Rolf Turner 2001-2018
   Licence: GNU Public Licence >= 2
@@ -62,7 +62,7 @@ void FNAME(
   R = *lenw;
 #endif
 
-  if(L <= 1 || N <= 1 || M <= 0) return;
+  if(L <= 0 || N <= 1 || M <= 0) return;
 
   /* Create space to store array in k-major order*/
   it = (int *) R_alloc(L, sizeof(int));

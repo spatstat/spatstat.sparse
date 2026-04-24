@@ -126,6 +126,8 @@ as.sparse3Darray <- function(x, ...) {
   return(y)
 }
 
+length.sparse3Darray <- function(x) { prod(dim(x)) }
+
 dim.sparse3Darray <- function(x) { x$dim }
 
 "dim<-.sparse3Darray" <- function(x, value) {

@@ -1,11 +1,15 @@
 
-        CHANGES IN spatstat.sparse VERSION 3.1-0.007
+        CHANGES IN spatstat.sparse VERSION 3.1-0.009
 
 OVERVIEW
 
     o Simulate a Markov chain with sparse transition matrix.
 
     o Recreate a symmetric matrix from its lower triangular entries.
+
+    o Weighted sum of outer products in a 3D array or sparse array.
+
+    o Minor improvements.
 
 NEW FUNCTIONS
 
@@ -16,6 +20,12 @@ NEW FUNCTIONS
     o symmatrix
     Recreate a symmetric matrix from a vector containing its lower triangular
     (or upper triangular) entries.
+
+    o length.sparse3Darray
+    Method for 'length' for sparse 3D arrays.
+
+    o sumsymouter
+    Weighted sum of outer products in a 3D array or sparse array
 
         CHANGES IN spatstat.sparse VERSION 3.1-0
 

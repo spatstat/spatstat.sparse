@@ -6,7 +6,7 @@
 #'   Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #'   GNU Public Licence >= 2.0
 #' 
-#'   $Revision: 1.19 $  $Date: 2021/01/08 01:16:41 $
+#'   $Revision: 1.21 $  $Date: 2026/04/24 05:22:07 $
 
 marginSumsSparse <- function(X, MARGIN) {
   #' equivalent to apply(X, MARGIN, sum)
@@ -221,17 +221,17 @@ sumsymouterSparse <- function(x, w=NULL, distinct=TRUE, dbg=FALSE) {
   if(distinct) {
     #' remove entries with j = k
     ok <- with(df, j != k)
-    df <- df[ok, , drop=TRUE]
+    df <- df[ok, , drop=FALSE]
   }
   ## trivial?
-  if(nrow(df) < 2) {
+  if(nrow(df) == 0) {
     y <- matrix(0, m, m)
     dimnames(y) <- rep(dimnames(x)[1], 2)
     return(y)
   }
   ## order by increasing j, then k
   oo <- with(df, order(j, k, i))
-  df <- df[oo, ]
+  df <- df[oo, , drop=FALSE]
   ## now provide ordering by increasing k then j
   ff <- with(df, order(k,j,i))
   ##
