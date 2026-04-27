@@ -6,7 +6,7 @@
 #' Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #' GNU Public Licence >= 2.0
 #'
-#' $Revision: 1.47 $  $Date: 2026/04/27 02:38:37 $
+#' $Revision: 1.49 $  $Date: 2026/04/27 07:47:02 $
 #'
 
 sparse3Darray <- function(i=integer(0), j=integer(0), k=integer(0),
@@ -861,6 +861,25 @@ Summary.sparse3Darray <- function(..., na.rm=FALSE) {
   }
   rslt <- do.call(.Generic, append(argh, list(na.rm=na.rm)))
   return(rslt)
+}
+
+
+isComplex <- function(x) {
+  if(is.null(x)) return(FALSE)
+  if(is.vector(x) || is.matrix(x) || is.array(x)) 
+    return(is.complex(x))
+  nd <- length(dim(x))
+  if(nd == 0 || nd == 1) {
+    x <- as(x, "sparseVector")
+    return(is.complex(x@x))
+  } else if(nd == 2) {
+    x <- as(x, "TsparseMatrix")
+    return(is.complex(x@x)) ## currently not supported by Matrix package
+  } else if(nd == 3) {
+    x <- as.sparse3Darray(x)
+    return(is.complex(x$x))
+  } else 
+    stop("Arrays of more than 3 dimensions are not supported", call.=FALSE)    
 }
 
 

@@ -6,7 +6,7 @@
 #'  Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #'  GNU Public Licence >= 2.0
 #'
-#' $Revision: 1.39 $ $Date: 2026/04/24 05:57:32 $
+#' $Revision: 1.40 $ $Date: 2026/04/27 07:36:07 $
 #'
 
 sumouter <- function(x, w=NULL, y=x) {
@@ -243,13 +243,13 @@ sumsymouter <- function(x, w=NULL, distinct=TRUE) {
   ## w is a matrix or sparse matrix
   ## Computes the sum of outer(x[,i,j], x[,j,i]) * w[i,j] over all pairs i != j
   ## handle complex values
-  if(is.complex(w)) {
+  if(isComplex(w)) {
     a <- sumsymouter(x, Re(w), distinct=distinct)
     b <- sumsymouter(x, Im(w), distinct=distinct)
     result <- a + b * 1i
     return(result)
   }
-  if(is.complex(x)) {
+  if(isComplex(x)) {
     a <- sumsymouter(Re(x), w=w, distinct=distinct)
     b <- sumsymouter(Im(x), w=w, distinct=distinct)
     d <- sumsymouter(Re(x)+Im(x), w=w, distinct=distinct)

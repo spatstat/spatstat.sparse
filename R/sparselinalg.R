@@ -202,7 +202,7 @@ sumsymouterSparse <- function(x, w=NULL, distinct=TRUE, dbg=FALSE) {
   ##  result <- a + b * 1i
   ##  return(result)
   ## }
-  if(is.complex(x)) {
+  if(isComplex(x)) {
     a <- sumsymouter(Re(x), w=w, distinct=distinct)
     b <- sumsymouter(Im(x), w=w, distinct=distinct)
     d <- sumsymouter(Re(x)+Im(x), w=w, distinct=distinct)

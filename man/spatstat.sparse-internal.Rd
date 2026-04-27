@@ -9,6 +9,7 @@
 %% sparse 3D arrays
 \alias{unionOfSparseIndices}
 \alias{inside3Darray}
+\alias{isComplex}
 \alias{SparseEntries}
 \alias{SparseIndices}
 \alias{SparseMatrixEntries}
@@ -35,6 +36,7 @@ check.mat.mul(A, B, Acols, Brows, fatal)
 %% sparse 3D arrays
 unionOfSparseIndices(A,B)
 inside3Darray(d, i, j, k)
+isComplex(x)
 SparseEntries(x)
 SparseIndices(x)
 SparseMatrixEntries(x, base)
