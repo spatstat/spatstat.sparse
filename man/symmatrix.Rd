@@ -9,11 +9,11 @@
   is symmetric.
 }
 \usage{
-symmatrix(x, from = c("lower", "upper"), diag = TRUE)
+symmatrix(x, from = c("lower", "upper"), diag = TRUE, na.value=NA)
 }
 \arguments{
   \item{x}{
-    A vector of atomic values.
+    A vector or sparse vector of atomic values.
   }
   \item{from}{
     Character string (partially matched) specifying whether the
@@ -23,6 +23,10 @@ symmatrix(x, from = c("lower", "upper"), diag = TRUE)
   \item{diag}{
     Logical value specifying whether \code{x} includes diagonal entries
     of the matrix.
+  }
+  \item{na.value}{
+    Value to be assigned to diagonal entries of the matrix, if
+    \code{diag=FALSE}.
   }
 }
 \details{
@@ -51,10 +55,14 @@ symmatrix(x, from = c("lower", "upper"), diag = TRUE)
   If \code{diag} is FALSE, then the diagonal entries of the matrix
   are assumed to have been omitted, and the
   resulting matrix will contain \code{NA} entries in the diagonal.
+
+  If \code{x} is a sparse vector (inheriting class
+  \code{"sparseVector"}) the result is a sparse matrix
+  (inheriting classes \code{"sparseMatrix"} and \code{"symmetricMatrix"}).
 }
 \value{
-  A symmetric square matrix, containing values of the same atomic type
-  as \code{x}.
+  A symmetric, square matrix or sparse matrix,
+  containing values of the same atomic type as \code{x}.
 }
 \author{
   \adrian.
@@ -72,8 +80,12 @@ symmatrix(x, from = c("lower", "upper"), diag = TRUE)
   (x <- M[lower.tri(M, diag=TRUE)])
   symmatrix(x)
 
+  xsp <- as(x, "sparseVector")
+  symmatrix(xsp)
+
   (y <- M[upper.tri(M, diag=FALSE)])
   symmatrix(y, from="upper", diag=FALSE)
+
 }
 \keyword{manip}
 \keyword{array}

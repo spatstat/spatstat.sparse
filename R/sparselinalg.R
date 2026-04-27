@@ -6,7 +6,7 @@
 #'   Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #'   GNU Public Licence >= 2.0
 #' 
-#'   $Revision: 1.21 $  $Date: 2026/04/24 05:22:07 $
+#'   $Revision: 1.23 $  $Date: 2026/04/27 04:11:56 $
 
 marginSumsSparse <- function(X, MARGIN) {
   #' equivalent to apply(X, MARGIN, sum)
@@ -257,8 +257,8 @@ sumsymouterSparse <- function(x, w=NULL, distinct=TRUE, dbg=FALSE) {
               PACKAGE = "spatstat.sparse")
     } else {
       ## extract triplet representation of w
-      w <- as(w, Class="TsparseMatrix")
-      dfw <- data.frame(j=w@i, k=w@j, w=w@x)
+      wdata <- SparseMatrixEntries(w, base=0)
+      dfw <- with(wdata, data.frame(j=i, k=j, w=x))
       woo <- with(dfw, order(j, k))
       dfw <- dfw[woo, , drop=FALSE]
       z <- .C(SP_CspaWtSumSymOut,
@@ -292,8 +292,8 @@ sumsymouterSparse <- function(x, w=NULL, distinct=TRUE, dbg=FALSE) {
               PACKAGE = "spatstat.sparse")
     } else {
       ## extract triplet representation of w
-      w <- as(w, Class="TsparseMatrix")
-      dfw <- data.frame(j=w@i, k=w@j, w=w@x)
+      wdata <- SparseMatrixEntries(w, base=0)
+      dfw <- with(wdata, data.frame(j=i, k=j, w=x))
       woo <- with(dfw, order(j, k))
       dfw <- dfw[woo, , drop=FALSE]
       z <- .C(SP_CDspaWtSumSymOut,

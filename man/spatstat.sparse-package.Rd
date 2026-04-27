@@ -72,7 +72,7 @@
 
   The class \code{"sparse3Darray"} has
   methods for \code{anyNA}, \code{dim}, \code{dim<-},
-  \code{dimnames}, \code{dimnames<-} and \code{print},
+  \code{dimnames}, \code{dimnames<-}, \code{length} and \code{print},
   documented in \code{\link{methods.sparse3Darray}}.
 
   For other undocumented functions,
@@ -82,12 +82,15 @@
   The package also includes some utilities for matrix calculations:
   \tabular{ll}{
     \code{\link{sumouter}} \tab sum of outer products of rows of a matrix \cr
+    \code{\link{sumsymouter}} \tab sum of outer products in a 3D array \cr
     \code{\link{quadform}} \tab quadratic form involving rows of a matrix \cr
     \code{\link{bilinearform}} \tab bilinear form involving rows of a matrix \cr
     \code{\link{matrixsqrt}} \tab square root of a matrix \cr
     \code{\link{matrixpower}} \tab powers of a matrix \cr
+    \code{\link{symmatrix}} \tab reconstruct a symmetric matrix from its
+  lower triangle \cr
   }
-  % Functions to document: sumsymouter, checksolve, check.mat.mul
+  % Functions to document: checksolve, check.mat.mul
 }
 \section{Licence}{
   This library and its documentation are usable under the terms of the

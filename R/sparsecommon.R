@@ -6,7 +6,7 @@
 #'  Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #'  GNU Public Licence >= 2.0
 #' 
-#'  $Revision: 1.19 $  $Date: 2023/02/28 01:52:43 $
+#'  $Revision: 1.21 $  $Date: 2026/04/27 02:37:55 $
 #'
 
 #'  .............. completely generic ....................
@@ -34,6 +34,61 @@ sparseVectorCumul <- function(x, i, length) {
   z <- tapply(x, list(factor(i, levels=1:length)), sum)
   z <- z[!is.na(z)]
   sparseVector(i=as.integer(names(z)), x=as.numeric(z), length=length)
+}
+
+SparseMatrixEntries <- function(x, base=1) {
+  ## ensure matrix is sparse, and forbid upper-triangular representation
+  x <- as(x, "generalMatrix")
+  ## form the triplets i, j, x
+  x <- as(x, "TsparseMatrix")
+  ii <- x@i
+  jj <- x@j
+  xx <- x@x
+  if(base != 0) {
+    ii <- ii + 1L
+    jj <- jj + 1L
+  }
+  df <- data.frame(i=ii, j=jj, x=xx)
+  if(inherits(x, "symmetricMatrix")) {
+    #' shouldn't happen!
+    warning("internal error: conversion to generalMatrix failed; repairing",
+            call.=FALSE)
+    #' symmetric matrix represented by upper/lower triangle 
+    offdiag <- (ii != jj)
+    if(any(offdiag)) {
+      df <- rbind(df,
+                  data.frame(i=jj[offdiag], j=ii[offdiag], x=xx[offdiag]))
+      df <- df[order(df$j, df$i), , drop=FALSE]
+    }
+  }
+  return(df)
+}
+
+SparseMatrixIndices <- function(x, base=1) {
+  ## ensure matrix is sparse, and forbid upper-triangular representation
+  x <- as(x, "generalMatrix")
+  ## form the triplets i, j, x
+  x <- as(x, "TsparseMatrix")
+  ii <- x@i
+  jj <- x@j
+  if(base != 0) {
+    ii <- ii + 1L
+    jj <- jj + 1L
+  }
+  df <- data.frame(i=ii, j=jj)
+  if(inherits(x, "symmetricMatrix")) {
+    #' shouldn't happen!
+    warning("internal error: conversion to generalMatrix failed; repairing",
+            call.=FALSE)
+    #' symmetric matrix represented by upper/lower triangle 
+    offdiag <- (ii != jj)
+    if(any(offdiag)) {
+      df <- rbind(df,
+                  data.frame(i=jj[offdiag], j=ii[offdiag]))
+      df <- df[order(df$j, df$i), , drop=FALSE]
+    }
+  }
+  return(df)
 }
 
 #'  .............. code that mentions sparse3Darray ................
@@ -77,23 +132,23 @@ expandSparse <- function(x, n, across) {
     }
   } else if(nd == 2) {
     if(inherits(x, "sparseMatrix")) {
-      z <- as(x, "TsparseMatrix")
-      m <- length(z@x)
+      z <- SparseMatrixEntries(x)
+      m <- nrow(z)
       y <- switch(across,
                   sparse3Darray(i=rep(1:n, times=m),
-		                j=rep(z@i + 1L, each=n),
-				k=rep(z@j + 1L, each=n),
-				x=rep(z@x, each=n),
+		                j=rep(z$i, each=n),
+				k=rep(z$j, each=n),
+				x=rep(z$x, each=n),
 				dims=c(n, dimx)),
-                  sparse3Darray(i=rep(z@i + 1L, each=n),
+                  sparse3Darray(i=rep(z$i, each=n),
 		                j=rep(1:n, times=m),
-				k=rep(z@j + 1L, each=n),
-				x=rep(z@x, each=n),
+				k=rep(z$j, each=n),
+				x=rep(z$x, each=n),
 				dims=c(dimx[1], n, dimx[2])),
-                  sparse3Darray(i=rep(z@i + 1L, each=n),
-		                j=rep(z@j + 1L, each=n),
+                  sparse3Darray(i=rep(z$i, each=n),
+		                j=rep(z$j, each=n),
 				k=rep(1:n, times=m),
-				x=rep(z@x, each=n),
+				x=rep(z$x, each=n),
 				dims=c(dimx, n)))
     } else stop("Not yet implemented for full arrays")
   } else 
@@ -125,8 +180,8 @@ mapSparseEntries <- function(x, margin, values, conform=TRUE, across) {
     return(y)
   }
   if(inherits(x, "sparseMatrix")) {
-    x <- as(x, Class="TsparseMatrix")
-    if(length(x@i) == 0) {
+    z <- SparseMatrixEntries(x)
+    if(nrow(z) == 0) {
       # no entries
       return(x)
     }
@@ -136,8 +191,8 @@ mapSparseEntries <- function(x, margin, values, conform=TRUE, across) {
                           things=c("rows","columns")[margin],
                           oneok=TRUE)
     nv <- if(inherits(values, "sparseVector")) values@length else length(values)
-    i <- x@i + 1L
-    j <- x@j + 1L
+    i <- z$i
+    j <- z$j
     yindex <- switch(margin, i, j)
     yvalues <- if(nv > 1) values[yindex] else rep(values[1], length(yindex))
     y <- sparseMatrix(i=i, j=j, x=yvalues, dims=dimx, dimnames=dimnames(x))

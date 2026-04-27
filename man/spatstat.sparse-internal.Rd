@@ -11,6 +11,8 @@
 \alias{inside3Darray}
 \alias{SparseEntries}
 \alias{SparseIndices}
+\alias{SparseMatrixEntries}
+\alias{SparseMatrixIndices}
 \alias{EntriesToSparse}
 \alias{mapSparseEntries}
 \alias{applySparseEntries}
@@ -35,6 +37,8 @@ unionOfSparseIndices(A,B)
 inside3Darray(d, i, j, k)
 SparseEntries(x)
 SparseIndices(x)
+SparseMatrixEntries(x, base)
+SparseMatrixIndices(x, base)
 EntriesToSparse(df, dims)
 mapSparseEntries(x, margin, values, conform, across)
 applySparseEntries(x, f, \dots)

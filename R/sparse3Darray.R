@@ -6,7 +6,7 @@
 #' Copyright (c) Adrian Baddeley, Ege Rubak and Rolf Turner 2016-2020
 #' GNU Public Licence >= 2.0
 #'
-#' $Revision: 1.46 $  $Date: 2026/01/21 06:26:39 $
+#' $Revision: 1.47 $  $Date: 2026/04/27 02:38:37 $
 #'
 
 sparse3Darray <- function(i=integer(0), j=integer(0), k=integer(0),
@@ -64,11 +64,13 @@ as.sparse3Darray <- function(x, ...) {
   if(inherits(x, "sparse3Darray")) {
     y <- x
   } else if(inherits(x, c("matrix", "sparseMatrix"))) {
-    z <- as(x, Class="TsparseMatrix")
+    z <- SparseMatrixEntries(x)
     dn <- dimnames(x)
     dn <- if(is.null(dn)) NULL else c(dn, list(NULL))
-    one <- if(length(z@i) > 0) 1L else integer(0)
-    y <- sparse3Darray(i=z@i + 1L, j=z@j + 1L, k=one, x=z@x,
+    y <- sparse3Darray(i=z$i,
+                       j=z$j,
+                       k=rep(1L, nrow(z)),
+                       x=z$x,
                        dims=c(dim(x), 1L), dimnames=dn)
   } else if(is.array(x)) {
     stopifnot(length(dim(x)) == 3)
@@ -108,9 +110,11 @@ as.sparse3Darray <- function(x, ...) {
       if(length(dnlist) > 1) stop("Dimnames of matrices do not match")
       dn <- if(length(dnlist) == 0) NULL else c(dnlist[[1L]], list(NULL))
       for(k in seq_len(n)) {
-        mk <- as(x[[k]], "TsparseMatrix")
-        kvalue <- if(length(mk@i) > 0) k else integer(0)
-        dfk <- data.frame(i=mk@i + 1L, j=mk@j + 1L, k=kvalue, x=mk@x)
+        mk <- SparseMatrixEntries(x[[k]])
+        dfk <- data.frame(i=mk$i,
+                          j=mk$j,
+                          k=rep(k, nrow(mk)),
+                          x=mk$x)
         df <- if(k == 1) dfk else rbind(df, dfk)
       }
       y <- sparse3Darray(i=df$i, j=df$j, k=df$k, x=df$x,
@@ -570,10 +574,10 @@ rbindCompatibleDataFrames <- function(x) {
     dimV <- dim(value)
     dropping <- (dimVshould == 1)
     if(length(dimV) == 2) {
-      value <- as(value, "TsparseMatrix")
-      iv <- value@i + 1L
-      jv <- value@j + 1L
-      xv <- value@x
+      value <- SparseMatrixEntries(value)
+      iv <- value$i
+      jv <- value$j
+      xv <- value$x
       firstindex <- which(!dropping)[1]
       secondindex <- which(!dropping)[2]
       pos1 <- replacementIndex(iv, IJK[[firstindex]])
@@ -869,8 +873,7 @@ SparseIndices <- function(x) {
     x <- as(x, "sparseVector")
     df <- data.frame(i=x@i)
   } else if(nd == 2) {
-    x <- as(x, "TsparseMatrix")
-    df <- data.frame(i=x@i + 1L, j=x@j + 1L)
+    df <- SparseMatrixIndices(x)
   } else if(nd == 3) {
     x <- as.sparse3Darray(x)
     df <- data.frame(i=x$i, j=x$j, k=x$k)
@@ -887,8 +890,7 @@ SparseEntries <- function(x) {
     x <- as(x, "sparseVector")
     df <- data.frame(i=x@i, x=x@x)
   } else if(nd == 2) {
-    x <- as(x, "TsparseMatrix")
-    df <- data.frame(i=x@i + 1L, j=x@j + 1L, x=x@x)
+    df <- SparseMatrixEntries(x)
   } else if(nd == 3) {
     x <- as.sparse3Darray(x)
     df <- data.frame(i=x$i, j=x$j, k=x$k, x=x$x)

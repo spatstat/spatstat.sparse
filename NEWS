@@ -1,5 +1,5 @@
 
-        CHANGES IN spatstat.sparse VERSION 3.1-0.009
+        CHANGES IN spatstat.sparse VERSION 3.1-0.010
 
 OVERVIEW
 
@@ -9,7 +9,7 @@ OVERVIEW
 
     o Weighted sum of outer products in a 3D array or sparse array.
 
-    o Minor improvements.
+    o Minor improvements and bug fixes
 
 NEW FUNCTIONS
 
@@ -26,6 +26,13 @@ NEW FUNCTIONS
 
     o sumsymouter
     Weighted sum of outer products in a 3D array or sparse array
+
+BUG FIXES
+
+   o numerous calculations with sparse matrices
+   Results were sometimes incorrect for symmetric sparse matrices
+   inheriting class "symmetricMatrix".
+   Fixed.
 
         CHANGES IN spatstat.sparse VERSION 3.1-0
 

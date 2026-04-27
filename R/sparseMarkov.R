@@ -4,7 +4,7 @@
 #'  discrete-time finite-state Markov chain simulation
 #'  using a sparse matrix representation of the transition matrix
 #'
-#'  $Revision: 1.5 $ $Date: 2026/04/11 04:25:09 $
+#'  $Revision: 1.6 $ $Date: 2026/04/27 03:10:27 $
 #'
 #'  Copyright (c) Adrian Baddeley 2026
 #'  GNU Public Licence (>= 2.0)
@@ -14,15 +14,23 @@ runSparseMarkovChain <- function(P, x0, nsteps, ...,
                                  result=c("history", "last"),
                                  check=TRUE,
                                  method=c("C", "interpreted")) {
-  P <- as(P, "RsparseMatrix")
-  if(!inherits(P, "RsparseMatrix"))
-    stop("Unable to convert P to a sparse matrix in row-major form",
-         call.=FALSE)
   method <- match.arg(method)
   result <- match.arg(result)
   savehistory <- (result == "history")
   x0 <- as.integer(x0)
   nx <- length(x0)
+  if(method == "C") {
+    ## prevent symmetric matrix from being represented by upper triangle
+    P <- as(P, "generalMatrix")
+    ## convert to row-major representation for use in Markov chain
+    P <- as(P, "RsparseMatrix")
+    if(!inherits(P, "RsparseMatrix"))
+      stop("Unable to convert P to a sparse matrix in row-major form",
+         call.=FALSE)
+    if(isSymmetric(P) && .hasSlot(P, "uplo"))
+      stop("Internal error: unable to suppress upper-triangular representation",
+           call.=FALSE)
+  }
   if(check) {
     ra <- range(P)
     if(!all(is.finite(ra)))
@@ -37,9 +45,11 @@ runSparseMarkovChain <- function(P, x0, nsteps, ...,
       stop("Some indices in x0 are out of range", call.=FALSE)
   }
 
-  nentries <- length(P@x)
-  if(nentries > .Machine$integer.max || is.na(as.integer(nentries)))
-    stop("Sorry, long vectors are not yet supported", call.=FALSE)
+  if(method == "C") {
+    nentries <- length(P@x)
+    if(nentries > .Machine$integer.max || is.na(as.integer(nentries)))
+      stop("Sorry, long vectors are not yet supported", call.=FALSE)
+  }
   
   ## >>>>>>>>>>>>  run chain  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   switch(method,
