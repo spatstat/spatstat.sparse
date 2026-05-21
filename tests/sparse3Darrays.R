@@ -5,7 +5,7 @@ require(spatstat.sparse)
 ALWAYS <- FULLTEST <- TRUE
 #'    tests/sparse3Darrays.R
 #'  Basic tests of code in sparse3Darray.R and sparsecommon.R
-#'  $Revision: 1.33 $ $Date: 2026/04/27 06:49:58 $
+#'  $Revision: 1.34 $ $Date: 2026/05/06 03:38:51 $
 
 if(!exists("ALWAYS")) ALWAYS <- TRUE
 if(!exists("FULLTEST")) FULLTEST <- ALWAYS
@@ -376,6 +376,18 @@ local({
   A <- array(runif(75) * (runif(75) < 0.7), dim=c(3,5,5))
   M <- as.sparse3Darray(A)
   M[rep(1,3), c(1,1,2), rep(2, 3)]
+
+  ## and again using a fixed mwe
+  Afull <- array(1:50, dim=c(2,5,5))
+  Asparse <- as.sparse3Darray(Afull)
+  Mfull <- abs(.col(c(5,5)) - .row(c(5,5)))
+  Msparse  <- as(as(Mfull, "symmetricMatrix"), "sparseMatrix")
+  Rfull <- sumsymouter(Afull, Mfull)
+  Rsparse <- sumsymouterSparse(Asparse, Msparse)
+  if(!all(Rsparse==Rfull))
+    stop(paste("sumsymouter(x, w): sparse and non-sparse algorithms disagree",
+               "when w is symmetric"))
+
 })
 
 }
