@@ -4,6 +4,7 @@
 
 [![CRAN status](https://www.r-pkg.org/badges/version/spatstat.sparse)](http://CRAN.R-project.org/package=spatstat.sparse)
 [![GitHub R package version](https://img.shields.io/github/r-package/v/spatstat/spatstat.sparse)](https://github.com/spatstat/spatstat.sparse)
+[![R-universe](https://spatstat.r-universe.dev/spatstat.sparse/badges/version)](https://spatstat.r-universe.dev/spatstat.sparse)
 
 This repository contains the current _development version_ of the
 `spatstat.sparse` package.
